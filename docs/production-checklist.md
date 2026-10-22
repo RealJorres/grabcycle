@@ -9,7 +9,7 @@ Work through this before real passengers and drivers use the system. Items marke
 - [ ] **[blocker]** Accepted passenger ID types and approval validity confirmed.
 - [ ] **[blocker]** Privacy notice and terms of service reviewed by counsel (Data Privacy Act of 2012 and NPC rules); version strings updated in `config/policies.terms` **and** `AppConfig.TERMS_VERSION` / `PRIVACY_NOTICE_VERSION` in the app.
 - [ ] **[blocker]** Retention periods in `config/policies.retention` approved by counsel; a policy decided for approved ID images (not deleted automatically today).
-- [ ] **[blocker]** Data-subject request procedure written; the account deletion/anonymisation function built and tested (not implemented yet; see [privacy-and-retention.md](privacy-and-retention.md)).
+- [ ] **[blocker]** Data-subject request procedure written (deadlines, identity checks, secure export delivery); counsel confirms which fields the deletion tool anonymises versus retains (see [privacy-and-retention.md](privacy-and-retention.md)).
 - [ ] NPC registration requirements, Data Protection Officer appointment, and breach-notification runbook.
 - [ ] Cancellation-fee policy decided and disclosed before enabling `passengerFeeEnabled`.
 - [ ] Emergency hotline number confirmed for Marinduque (`config/app.emergencyHotline`; the app's fallback is 911) and support phone and email published.

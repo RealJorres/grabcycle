@@ -15,6 +15,7 @@ const DriverQueuePage = lazy(() => import('./pages/DriverQueuePage').then((m) =>
 const OverviewPage = lazy(() => import('./pages/OverviewPage').then((m) => ({ default: m.OverviewPage })));
 const RideDetailPage = lazy(() => import('./pages/RideDetailPage').then((m) => ({ default: m.RideDetailPage })));
 const RidesPage = lazy(() => import('./pages/RidesPage').then((m) => ({ default: m.RidesPage })));
+const PrivacyRequestsPage = lazy(() => import('./pages/PrivacyRequestsPage').then((m) => ({ default: m.PrivacyRequestsPage })));
 const StaffPage = lazy(() => import('./pages/StaffPage').then((m) => ({ default: m.StaffPage })));
 const SupportCasePage = lazy(() => import('./pages/SupportCasePage').then((m) => ({ default: m.SupportCasePage })));
 const SupportPage = lazy(() => import('./pages/SupportPage').then((m) => ({ default: m.SupportPage })));
@@ -47,6 +48,7 @@ export function AppRoutes() {
         <Route path="support" element={<RequirePermission permission="support.manage"><SupportPage /></RequirePermission>} />
         <Route path="support/:caseId" element={<RequirePermission permission="support.manage"><SupportCasePage /></RequirePermission>} />
         <Route path="config" element={<RequirePermission permission="config.manage"><ConfigPage /></RequirePermission>} />
+        <Route path="privacy" element={<RequirePermission permission="privacy.manage"><PrivacyRequestsPage /></RequirePermission>} />
         <Route path="audit" element={<AuditPage />} />
         <Route path="staff" element={<RequirePermission permission="staff.manage"><StaffPage /></RequirePermission>} />
         <Route path="*" element={<p className="text-sm text-muted">Page not found.</p>} />

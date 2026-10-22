@@ -66,6 +66,9 @@ export const adminCancelRide = adminH.adminCancelRideFn;
 export const adminCompleteRide = adminH.adminCompleteRideFn;
 export const adminResolvePayment = adminH.adminResolvePaymentFn;
 export const adminUpdateSupportCase = adminH.adminUpdateSupportCaseFn;
+export const adminExportUserData = adminH.adminExportUserDataFn;
+export const adminResolveDataRequest = adminH.adminResolveDataRequestFn;
+export const adminDeleteUserData = adminH.adminDeleteUserDataFn;
 
 // Scheduled jobs
 export const sweepRidesJob = schedules.sweepRidesJob;

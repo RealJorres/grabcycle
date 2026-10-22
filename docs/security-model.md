@@ -9,7 +9,7 @@
         ▼
  ┌──────────────── Firebase (asia-southeast1) ────────────────────────────┐
  │ Auth: phone (riders), email/password + staffRole claim (staff)         │
- │ Cloud Functions 2nd gen, Node 24: 44 callables + 5 scheduled jobs      │
+ │ Cloud Functions 2nd gen, Node 24: 47 callables + 5 scheduled jobs      │
  │   ── the only writer of Firestore, presence and private files ──       │
  │ Cloud Firestore: accounts, drivers, rides, payments, config, audit     │
  │ Realtime Database: presence/{uid}, locations/{uid} (live GPS, geohash) │
@@ -40,7 +40,7 @@ The account type is chosen once and cannot change. Staff identities cannot also 
 | users.read | ✓ | ✓ | ✓ | ✓ |
 | users.suspend | | | ✓ | ✓ |
 | rides.read, support.manage, reports.read | | ✓ | ✓ | ✓ |
-| rides.intervene, payments.manage, config.manage, audit.read | | | ✓ | ✓ |
+| rides.intervene, payments.manage, config.manage, audit.read, privacy.manage | | | ✓ | ✓ |
 | staff.manage | | | | ✓ |
 
 Every callable checks the permission server-side. Firestore rules apply the same role split to direct reads (for example, support staff cannot read verification cases or document metadata). The dashboard hides controls a role cannot use; a contract test fails the build if its copy of the matrix drifts from the backend. Role changes revoke the person's refresh tokens so they take effect at once.
@@ -82,7 +82,7 @@ Staff ──adminGetDocumentFile (documents.view, rate-limited, AUDITED)──�
 
 ## Audit trail
 
-`auditLogs` is append-only (server writes only) with `category` (REVIEW, SUPPORT, SECURITY, OPERATIONS, CONFIG, PAYMENT), actor, role, target, reason and non-sensitive details. Audited actions include every review decision, document view, suspension, role change, configuration or fare change, ride intervention, payment resolution, driver online and offline, and privacy request.
+`auditLogs` is append-only (server writes only) with `category` (REVIEW, SUPPORT, SECURITY, OPERATIONS, CONFIG, PAYMENT), actor, role, target, reason and non-sensitive details. Audited actions include every review decision, document view, suspension, role change, configuration or fare change, ride intervention, payment resolution, driver online and offline, and privacy request, export and deletion.
 
 ## Web dashboard hardening
 

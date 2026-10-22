@@ -14,7 +14,7 @@ The backend decides everything that matters: who may book, who may drive, who ge
 
 - **Passengers** sign in with their phone number and submit a government ID. **They cannot book until a human reviewer approves it.** After that they set a pickup and a destination, get a server-computed fare quote, see nearby available drivers, and book a chosen driver or automatic matching. They can follow the driver live, call or text through the app, use the emergency menu, pay cash, rate the driver, and file support reports.
 - **Drivers** register, add their tricycle, and upload accreditation documents (license, OR/CR, franchise, photos, and so on, as defined by the configurable document policy). **They cannot go online until every mandatory document and the vehicle are approved.** Online drivers share location in a visible foreground service, receive time-limited offers, run the trip step by step, and record the cash received against the server's final fare.
-- **Staff** use the dashboard to review IDs and accreditation (each document view is audited and watermarked), manage users, rides, payments, support cases, configuration (service area, fares, matching, policies) and staff roles.
+- **Staff** use the dashboard to review IDs and accreditation (each document view is audited and watermarked), manage users, rides, payments, support cases, privacy requests (export, deletion with anonymisation), configuration (service area, fares, matching, policies) and staff roles.
 
 ## Repository layout
 

@@ -189,3 +189,14 @@ export interface StaffRecord {
   active: boolean;
   updatedAt: Timestamp;
 }
+
+export interface DataRequest {
+  requestId: string;
+  uid: string;
+  type: 'ACCESS' | 'DELETION' | 'CORRECTION';
+  note: string | null;
+  status: 'RECEIVED' | 'IN_PROGRESS' | 'COMPLETED' | 'REJECTED';
+  resolutionNote?: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}

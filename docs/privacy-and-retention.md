@@ -35,16 +35,19 @@ Retention periods are configuration (`config/policies.retention`), not code. The
 | Ride contact numbers | Until the ride ends | Deleted in the ending transaction | Yes |
 | **Approved** passenger ID images | While the account exists | None | **No.** Decide a policy (for example, delete N days after approval, keeping the decision record) |
 | **Approved** driver documents | While the document is the approved version | Replaced versions go through the deletion queue | Partly |
-| Accounts (profile, Auth user, devices, uploads) | Until a deletion request | Manual (see below) | **No** |
+| Accounts (profile, Auth user, devices, files) | Until a deletion request | Staff run `adminDeleteUserData` from the dashboard (see below) | On request (tested) |
 
 ## Data-subject requests
 
-Users file requests in the app (Profile → Privacy and your data). The backend records them in `dataRequests` (type ACCESS, CORRECTION or DELETION; rate-limited to 3 per day) and audits them. **Fulfilment is a manual staff process today.** Before launch, the operator needs:
+Users file requests in the app (Profile → Privacy and your data). The backend records them in `dataRequests` (type ACCESS, CORRECTION or DELETION; rate-limited to 3 per day) and audits them. Staff with `privacy.manage` (admin, superadmin) handle them on the dashboard's **Privacy requests** page:
 
-1. A documented procedure and response deadline for each request type.
-2. For **access**: an export of the user's `users` document, rides, payments, ratings, support cases and verification status (not internal reviewer notes, if counsel agrees that is permissible).
-3. For **deletion**: checks for active trips, open disputes and legal holds; deletion of the Auth user, `users/{uid}` and subcollections, `drivers/{uid}` and subcollections, private and public files, and devices; anonymisation (rather than deletion) of ride records still within their retention period. **This deletion function is not implemented yet** and should be built and tested as an admin callable before launch.
-4. For **correction**: verified names come from reviewed IDs, so a corrected name normally requires a new ID submission.
+| Request | Tool | What it does |
+|---|---|---|
+| Access | `adminExportUserData` → JSON download | The person's account, driver record, document statuses (no file locations or reviewer identities), identity-verification outcomes (no internal notes), rides, payments, ratings they gave, and support cases. Staff deliver it through an agreed secure channel |
+| Deletion | `adminDeleteUserData` (the account id must be typed to confirm) | Refused while the person has an active trip or an open payment dispute. Otherwise deletes the Auth user, presence and live location, `users/{uid}` and `drivers/{uid}` with all subcollections, identity and accreditation files, staged uploads and the public photo. Records within their retention period are **anonymised**: names on rides, pickup notes, rating comments, support descriptions and verification-case names are replaced, and file lists cleared. Safe to re-run |
+| Correction / any | `adminResolveDataRequest` | Closes the request as COMPLETED or REJECTED with an audited note. Verified names come from reviewed IDs, so a corrected name normally requires a new ID submission |
+
+The operator still needs a written procedure with response deadlines, identity confirmation steps before exporting, and counsel's view on which fields must be retained (for example, for tax or transport regulation) versus anonymised.
 
 ## Security and breach response
 

@@ -14,6 +14,7 @@ export const NAV: NavItem[] = [
   { to: '/rides', label: 'Rides', permission: 'rides.read' },
   { to: '/support', label: 'Support', permission: 'support.manage' },
   { to: '/config', label: 'Configuration', permission: 'config.manage' },
+  { to: '/privacy', label: 'Privacy requests', permission: 'privacy.manage' },
   { to: '/audit', label: 'Audit log', permission: null },
   { to: '/staff', label: 'Staff', permission: 'staff.manage' },
 ];

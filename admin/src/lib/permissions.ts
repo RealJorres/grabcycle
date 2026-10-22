@@ -20,12 +20,13 @@ export type Permission =
   | 'config.manage'
   | 'reports.read'
   | 'audit.read'
+  | 'privacy.manage'
   | 'staff.manage';
 
 const REVIEWER: Permission[] = ['review.read', 'review.decide', 'documents.view', 'users.read'];
 const SUPPORT: Permission[] = ['users.read', 'rides.read', 'support.manage', 'reports.read'];
 const ADMIN: Permission[] = [
-  ...new Set<Permission>([...REVIEWER, ...SUPPORT, 'users.suspend', 'rides.intervene', 'payments.manage', 'config.manage', 'audit.read']),
+  ...new Set<Permission>([...REVIEWER, ...SUPPORT, 'users.suspend', 'rides.intervene', 'payments.manage', 'config.manage', 'audit.read', 'privacy.manage']),
 ];
 
 export const ROLE_PERMISSIONS: Record<StaffRole, readonly Permission[]> = {

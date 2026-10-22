@@ -109,6 +109,12 @@ export const api = {
     active: boolean;
   }) => call<typeof input, { id: string }>('adminUpsertLandmark', input),
 
+  exportUserData: (requestId: string) => call<{ requestId: string }, Record<string, unknown>>('adminExportUserData', { requestId }),
+  resolveDataRequest: (input: { requestId: string; status: 'COMPLETED' | 'REJECTED'; resolutionNote: string }) =>
+    call<typeof input, { status: string }>('adminResolveDataRequest', input),
+  deleteUserData: (input: { requestId: string; confirmUid: string }) =>
+    call<typeof input, { status: string; rides: number; ratings: number; supportCases: number; verificationCases: number; files: number }>('adminDeleteUserData', input),
+
   setStaffRole: (email: string, role: StaffRole | null) =>
     call<{ email: string; role: StaffRole | null }, { uid: string; role: StaffRole | null }>('adminSetStaffRole', { email, role }),
 };

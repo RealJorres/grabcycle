@@ -45,7 +45,7 @@ All writes are made by Cloud Functions unless a row says otherwise. "Read" lists
 |---|---|---|---|
 | `supportCases/{caseId}` | User report | `reporterUid`, `reporterRole`, `rideId`, `category`, `description`, `status` OPEN/IN_PROGRESS/RESOLVED/CLOSED, `priority` NORMAL/HIGH/URGENT (SAFETY → URGENT), `publicResponse`, `assignedTo` | Reporter, support |
 | `supportCases/{id}/notes/{noteId}` | Internal staff notes | `note`, `authorUid`, `createdAt` | Support |
-| `dataRequests/{requestId}` | Data-subject requests | `uid`, `type` ACCESS/DELETION/CORRECTION, `note`, `status`, timestamps | Requester, admins |
+| `dataRequests/{requestId}` | Data-subject requests | `uid`, `type` ACCESS/DELETION/CORRECTION, `note`, `status` RECEIVED/IN_PROGRESS/COMPLETED/REJECTED, `handledBy`, `resolutionNote`, `resolvedAt`, timestamps | Requester, admins |
 | `auditLogs/{id}` | Append-only audit trail | `category`, `action`, `actorUid`, `actorRole`, `targetType`, `targetId`, `targetUid`, `reasonCode`, `details`, `at` | Admins; reviewers (REVIEW); support (SUPPORT) |
 | `rateLimits/{key}` | Fixed-window counters | `count`, `windowStart`, `expiresAt` (TTL) | Nobody |
 | `fileDeletionQueue/{id}` | Private files scheduled for deletion under the retention policy | `paths[]`, `reason`, `deleteAfter`, `createdAt` | Nobody (server only) |

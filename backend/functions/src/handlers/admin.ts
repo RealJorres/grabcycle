@@ -13,6 +13,7 @@ import {
   decidePassengerVerification,
 } from '../services/passengerVerification';
 import { resolvePayment } from '../services/payments';
+import { deleteUserData, exportUserData, resolveDataRequest } from '../services/privacy';
 import { cancelRide, completeRide } from '../services/rides';
 import { updateSupportCase } from '../services/support';
 
@@ -203,4 +204,25 @@ export const adminUpdateSupportCaseFn = callable(
   }),
   updateSupportCase,
   admin,
+);
+
+export const adminExportUserDataFn = callable(
+  'adminExportUserData',
+  z.strictObject({ requestId: docId }),
+  exportUserData,
+  { ...admin, memory: '512MiB', timeoutSeconds: 120 },
+);
+
+export const adminResolveDataRequestFn = callable(
+  'adminResolveDataRequest',
+  z.strictObject({ requestId: docId, status: z.enum(['COMPLETED', 'REJECTED']), resolutionNote: longText(3, 1000) }),
+  resolveDataRequest,
+  admin,
+);
+
+export const adminDeleteUserDataFn = callable(
+  'adminDeleteUserData',
+  z.strictObject({ requestId: docId, confirmUid: uid }),
+  deleteUserData,
+  { ...admin, memory: '512MiB', timeoutSeconds: 540 },
 );

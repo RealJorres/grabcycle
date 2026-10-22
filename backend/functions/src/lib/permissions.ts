@@ -20,6 +20,7 @@ export type Permission =
   | 'config.manage'
   | 'reports.read'
   | 'audit.read'
+  | 'privacy.manage'
   | 'staff.manage';
 
 const REVIEWER: Permission[] = ['review.read', 'review.decide', 'documents.view', 'users.read'];
@@ -33,6 +34,7 @@ const ADMIN: Permission[] = [
     'payments.manage',
     'config.manage',
     'audit.read',
+    'privacy.manage',
   ]),
 ];
 
