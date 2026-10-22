@@ -20,5 +20,5 @@
     "outDir": "lib",
     "rootDir": "."
   },
-  "include": ["src", "test", "vitest.config.mts"]
+  "include": ["src", "test", "scripts", "vitest.config.mts"]
 }

@@ -44,15 +44,18 @@ export function toHttpsError(err: unknown, fn: string): HttpsError {
 }
 
 export function callable<S extends z.ZodType, O>(name: string, schema: S, handler: Handler<z.infer<S>, O>, options: Options = {}) {
+  // Only set keys that have values: firebase-functions treats a present-but-undefined
+  // key (e.g. `secrets: undefined`) as configured and fails codebase analysis.
+  const opts: CallableOptions = {
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    cors: options.admin ? ADMIN_ORIGINS : true,
+    memory: options.memory ?? '256MiB',
+    timeoutSeconds: options.timeoutSeconds ?? 30,
+  };
+  if (options.secrets) opts.secrets = options.secrets;
+  if (options.minInstances != null) opts.minInstances = options.minInstances;
   return onCall(
-    {
-      enforceAppCheck: ENFORCE_APP_CHECK,
-      cors: options.admin ? ADMIN_ORIGINS : true,
-      memory: options.memory ?? '256MiB',
-      timeoutSeconds: options.timeoutSeconds ?? 30,
-      secrets: options.secrets,
-      minInstances: options.minInstances,
-    },
+    opts,
     async (request) => {
       if (!request.auth) {
         throw new HttpsError('unauthenticated', 'Sign in required.', { reason: 'UNAUTHENTICATED' });

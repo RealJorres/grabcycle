@@ -1,4 +1,6 @@
 import { randomBytes } from 'node:crypto';
+import { ServerValue } from 'firebase-admin/database';
+import { geohashForLocation } from 'geofire-common';
 import { expect } from 'vitest';
 import { SAMPLE_DOCUMENT_POLICY, SAMPLE_FARE_CONFIG, SAMPLE_SERVICE_AREA, DEFAULT_MATCHING, DEFAULT_POLICIES } from '../../src/domain/defaults';
 import type { AppError, ErrorReason } from '../../src/domain/errors';
@@ -8,6 +10,8 @@ import type { CallerContext } from '../../src/lib/context';
 import { auth, bucket, db, rtdb } from '../../src/lib/firebase';
 import { setClockForTesting } from '../../src/lib/time';
 import { completeRegistration } from '../../src/services/accounts';
+import { setDriverAvailability } from '../../src/services/availability';
+import { getFareQuote } from '../../src/services/quotes';
 import {
   decideDriver,
   reviewDriverDocument,
@@ -192,4 +196,52 @@ export async function expectReason(promise: Promise<unknown>, reason: ErrorReaso
 
 export async function getDoc<T = Record<string, unknown>>(path: string): Promise<T | undefined> {
   return (await db().doc(path).get()).data() as T | undefined;
+}
+
+// ---------------------------------------------------------------------------
+// Location & ride helpers
+// ---------------------------------------------------------------------------
+
+export async function goOnline(c: CallerContext, at: { lat: number; lng: number } = BOAC): Promise<{ availability: string; sessionId: string }> {
+  const res = await setDriverAvailability(c, { online: true, location: { lat: at.lat, lng: at.lng, accuracy: 10, mock: false } });
+  if (!('sessionId' in res)) throw new Error('Driver did not go online');
+  return res;
+}
+
+/** Publishes a driver location as the device would (server timestamp, current session). */
+export async function moveDriver(uid: string, at: { lat: number; lng: number }, opts: { ageMs?: number; acc?: number } = {}) {
+  const sid = (await db().doc(`drivers/${uid}`).get()).get('presenceSessionId');
+  await rtdb()
+    .ref(`locations/${uid}`)
+    .set({
+      lat: at.lat,
+      lng: at.lng,
+      acc: opts.acc ?? 10,
+      g: geohashForLocation([at.lat, at.lng], 10),
+      ts: opts.ageMs ? Date.now() - opts.ageMs : ServerValue.TIMESTAMP,
+      sid,
+    });
+}
+
+/** A point roughly `meters` north of `from`. */
+export function north(from: { lat: number; lng: number }, meters: number) {
+  return { lat: from.lat + meters / 111_320, lng: from.lng };
+}
+
+export async function quoteFor(c: CallerContext, pickup = BOAC, destination = MOGPOG) {
+  return getFareQuote(c, {
+    pickup: { ...pickup, address: 'Pickup', placeId: null },
+    destination: { ...destination, address: 'Destination', placeId: null },
+    passengers: 1,
+  });
+}
+
+export async function approvedPassenger(name?: string): Promise<CallerContext> {
+  const p = await registerPassenger(name);
+  await approvePassenger(p);
+  return p;
+}
+
+export function requestId(): string {
+  return randomBytes(12).toString('base64url');
 }

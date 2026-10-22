@@ -9,6 +9,7 @@
     },
 
     "presence": {
+      ".indexOn": ["canPublish"],
       "$uid": {
         ".read": "auth != null && auth.uid === $uid",
         ".write": false

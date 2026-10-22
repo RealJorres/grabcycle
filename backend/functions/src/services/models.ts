@@ -181,7 +181,7 @@ export interface RideDoc {
   mode: 'SELECTED' | 'AUTO';
   allowFallback: boolean;
   selectedDriverId: string | null;
-  pickup: Place;
+  pickup: Place & { note?: string };
   destination: Place;
   quote: RideQuoteSnapshot;
   offer: { driverId: string; offeredAt: Timestamp; expiresAt: Timestamp; attempt: number } | null;
@@ -200,9 +200,17 @@ export interface RideDoc {
   payment: { method: PaymentMethod; status: PaymentStatus };
   cancellation: { by: 'PASSENGER' | 'DRIVER' | 'ADMIN' | 'SYSTEM'; reasonCode: string; note: string | null; feeApplied: number } | null;
   rated: { byPassenger: boolean; byDriver: boolean };
+  arrivalVerified?: boolean;
   requestedAt: Timestamp;
+  searchingAt?: Timestamp;
+  acceptedAt?: Timestamp;
+  enRouteAt?: Timestamp;
+  arrivedAt?: Timestamp;
+  startedAt?: Timestamp;
+  completedAt?: Timestamp;
+  cancelledAt?: Timestamp;
+  endedAt?: Timestamp;
   updatedAt: Timestamp;
-  [timestampField: string]: unknown;
 }
 
 export interface PaymentDoc {

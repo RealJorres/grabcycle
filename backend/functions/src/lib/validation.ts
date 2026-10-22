@@ -20,6 +20,7 @@ export function parseInput<S extends z.ZodType>(schema: S, data: unknown): z.inf
 export const text = (min: number, max: number) =>
   z
     .string()
+    // eslint-disable-next-line no-control-regex -- stripping control characters is the point
     .transform((s) => s.replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim())
     .pipe(z.string().min(min).max(max));
 
@@ -27,6 +28,7 @@ export const text = (min: number, max: number) =>
 export const longText = (min: number, max: number) =>
   z
     .string()
+    // eslint-disable-next-line no-control-regex -- keep newlines/tabs, strip other control characters
     .transform((s) => s.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim())
     .pipe(z.string().min(min).max(max));
 

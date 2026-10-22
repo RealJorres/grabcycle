@@ -2,6 +2,8 @@
 .env
 .env.*
 !.env.example
+!backend/functions/.env.demo-grabcycle
+!backend/functions/.secret.local.example
 *.secret.local
 .secret.local
 .runtimeconfig.json
