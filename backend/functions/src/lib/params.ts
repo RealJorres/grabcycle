@@ -20,7 +20,7 @@ export const ENFORCE_APP_CHECK = defineBoolean('ENFORCE_APP_CHECK', {
 /** Browser origins allowed to call admin functions (the admin dashboard hosting domains). */
 export const ADMIN_ORIGINS = defineList('ADMIN_ORIGINS', {
   default: ['http://localhost:5173'],
-  description: 'Comma-separated list of admin dashboard origins.',
+  description: 'Admin dashboard origins as a JSON array, e.g. ["https://example.web.app"].',
 });
 
 /** Deployment environment label used for logging and safety checks. */

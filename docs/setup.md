@@ -90,7 +90,7 @@ Use separate projects for staging and production.
    - Android: Play Integrity (release builds install it automatically; debug builds use the debug provider, so register the debug token from Logcat).
    - Web: reCAPTCHA Enterprise. Put the site key in `VITE_RECAPTCHA_ENTERPRISE_SITE_KEY`.
    - Turn on enforcement for Firestore, Realtime Database and Storage in the console once clients are deployed. Cloud Functions enforce it through `ENFORCE_APP_CHECK=true`.
-5. **Functions parameters:** copy `backend/functions/.env.example` to `backend/functions/.env.<project-id>` and set `ADMIN_ORIGINS` to the Hosting domains.
+5. **Functions parameters:** copy `backend/functions/.env.example` to `backend/functions/.env.<project-id>` and set `ADMIN_ORIGINS` to the Hosting domains as a JSON array (`["https://<project>.web.app","https://<project>.firebaseapp.com"]`). A comma-separated value deploys, but in the emulator it disables CORS for admin functions.
 6. **Secrets (Secret Manager, never in files):**
 
    ```bash

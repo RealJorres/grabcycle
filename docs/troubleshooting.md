@@ -36,6 +36,7 @@ Every backend rejection carries a stable `details.reason` (see `backend/function
 | "Dashboard not configured" | The build had no `VITE_FIREBASE_*` variables | Set them (see `admin/.env.example`) and rebuild |
 | "No staff access" after sign-in | The account has no `staffRole` claim, or it was just changed | A superadmin grants a role; sign in again so the token refreshes |
 | Lists show "Missing or insufficient permissions" | The role cannot read that collection (for example, support cannot read verification cases), or the Firestore rules were not deployed | Check the role. Deploy rules with `firebase deploy --only firestore` |
+| Every admin action fails with `internal`; the browser console shows a CORS error | `ADMIN_ORIGINS` is not a JSON array, so the functions runtime cannot parse it and disables CORS for admin functions; or the dashboard runs on an origin that is not listed | Write it as `ADMIN_ORIGINS=["https://…","https://…"]` in `backend/functions/.env.<project>` and restart the emulator or redeploy. The local emulator allows any origin once the value parses; deployed functions enforce the list |
 | Query error "requires an index" | Indexes not deployed or still building | `firebase deploy --only firestore:indexes`; wait for the build in the console |
 | "Your role does not allow this action" | The callable rejected the permission (server-side matrix) | Expected for that role |
 | Cannot decide a case | Another reviewer claimed it, or it is your own account | Ask the claimant or an admin |
