@@ -101,9 +101,6 @@ android {
         abortOnError = true
         checkReleaseBuilds = true
         warningsAsErrors = false
-        // Print every finding to the build log so CI shows warnings, not only the first error.
-        textReport = true
-        textOutput = file("stdout")
     }
 }
 
@@ -144,4 +141,10 @@ dependencies {
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+// Surface deprecated and unchecked API use in the build log (javac otherwise
+// prints only a one-line note).
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.addAll(listOf("-Xlint:deprecation", "-Xlint:unchecked"))
 }
