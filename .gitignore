@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+!admin/.env.development.example
 !backend/functions/.env.demo-grabcycle
 !backend/functions/.secret.local.example
 *.secret.local
