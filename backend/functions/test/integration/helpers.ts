@@ -219,6 +219,7 @@ export async function moveDriver(uid: string, at: { lat: number; lng: number }, 
       acc: opts.acc ?? 10,
       g: geohashForLocation([at.lat, at.lng], 10),
       ts: opts.ageMs ? Date.now() - opts.ageMs : ServerValue.TIMESTAMP,
+      cts: Date.now() - (opts.ageMs ?? 0),
       sid,
     });
 }

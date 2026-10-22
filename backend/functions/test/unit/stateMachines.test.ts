@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   assertVerificationTransition,
   canTransitionVerification,
+  effectiveVerificationStatus,
   isPassengerApprovedForBooking,
 } from '../../src/domain/passengerVerification';
 import { assertPaymentTransition, canTransitionPayment, cashOutcome } from '../../src/domain/payment';
@@ -91,6 +92,15 @@ describe('passenger verification state machine', () => {
     expect(isPassengerApprovedForBooking({ status: 'SUBMITTED', validUntil: null }, now)).toBe(false);
     expect(isPassengerApprovedForBooking({ status: 'SUSPENDED', validUntil: null }, now)).toBe(false);
     expect(isPassengerApprovedForBooking(null, now)).toBe(false);
+  });
+
+  it('a lapsed approval is effectively NEEDS_RESUBMISSION; nothing else changes', () => {
+    const now = 1_000_000;
+    expect(effectiveVerificationStatus({ status: 'APPROVED', validUntil: now }, now)).toBe('NEEDS_RESUBMISSION');
+    expect(effectiveVerificationStatus({ status: 'APPROVED', validUntil: now + 1 }, now)).toBe('APPROVED');
+    expect(effectiveVerificationStatus({ status: 'APPROVED', validUntil: null }, now)).toBe('APPROVED');
+    expect(effectiveVerificationStatus({ status: 'SUSPENDED', validUntil: now - 1 }, now)).toBe('SUSPENDED');
+    expect(effectiveVerificationStatus(null, now)).toBe('NOT_SUBMITTED');
   });
 });
 

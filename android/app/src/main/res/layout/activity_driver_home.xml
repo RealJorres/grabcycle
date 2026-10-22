@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_md">
+
+        <include layout="@layout/include_offline_banner" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu"
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                android:layout_width="@dimen/touch_target"
+                android:layout_height="@dimen/touch_target"
+                android:contentDescription="@string/ph_menu"
+                app:icon="@drawable/ic_menu" />
+
+            <TextView
+                android:id="@+id/availability_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_md"
+                android:textAppearance="@style/TextAppearance.GrabCycle.Chip" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/emergency"
+                style="@style/Widget.GrabCycle.Button.Danger"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/touch_target"
+                android:text="@string/ride_emergency"
+                android:visibility="gone"
+                app:icon="@drawable/ic_warning" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/map_unavailable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:background="@drawable/bg_banner"
+            android:padding="@dimen/space_md"
+            android:text="@string/maps_key_missing"
+            android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_sheet"
+        android:elevation="8dp"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="320dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:id="@+id/sheet_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_padding"
+            android:paddingBottom="@dimen/space_lg">
+
+            <View
+                android:layout_width="36dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_sm"
+                android:layout_marginBottom="@dimen/space_md"
+                android:background="@drawable/bg_sheet_handle" />
+
+            <TextView
+                android:id="@+id/cached_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cached_data_notice"
+                android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+                android:visibility="gone" />
+
+            <!-- Setup required: accreditation incomplete or lapsed. -->
+            <LinearLayout
+                android:id="@+id/stage_setup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/setup_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Chip" />
+
+                <TextView
+                    android:id="@+id/setup_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Headline" />
+
+                <TextView
+                    android:id="@+id/setup_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Body" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/open_setup"
+                    style="@style/Widget.GrabCycle.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/dh_continue_setup" />
+            </LinearLayout>
+
+            <!-- Online / offline. -->
+            <LinearLayout
+                android:id="@+id/stage_availability"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/availability_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Headline" />
+
+                <TextView
+                    android:id="@+id/availability_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Body" />
+
+                <TextView
+                    android:id="@+id/location_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:drawablePadding="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/ic_my_location" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/toggle_online"
+                    style="@style/Widget.GrabCycle.Button.DriverAction"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/driver_action_height"
+                    android:layout_marginTop="@dimen/space_md" />
+
+                <TextView
+                    android:id="@+id/stats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Caption" />
+            </LinearLayout>
+
+            <!-- Incoming offer. -->
+            <LinearLayout
+                android:id="@+id/stage_offer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dh_new_request"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Headline" />
+
+                <TextView
+                    android:id="@+id/offer_countdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:accessibilityLiveRegion="polite"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Body" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/offer_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:max="1000" />
+
+                <TextView
+                    android:id="@+id/offer_pickup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:drawablePadding="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Title"
+                    app:drawableStartCompat="@drawable/ic_pin_pickup" />
+
+                <TextView
+                    android:id="@+id/offer_pickup_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/offer_destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:drawablePadding="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Body"
+                    app:drawableStartCompat="@drawable/ic_pin_destination" />
+
+                <TextView
+                    android:id="@+id/offer_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Body" />
+
+                <TextView
+                    android:id="@+id/offer_fare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Amount" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/accept"
+                    style="@style/Widget.GrabCycle.Button.DriverAction"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/driver_action_height"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/dh_accept" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/decline"
+                    style="@style/Widget.GrabCycle.Button.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:text="@string/dh_decline" />
+            </LinearLayout>
+
+            <!-- Active trip. -->
+            <LinearLayout
+                android:id="@+id/stage_trip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/trip_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Chip" />
+
+                <TextView
+                    android:id="@+id/trip_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Headline" />
+
+                <TextView
+                    android:id="@+id/trip_target"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Body" />
+
+                <TextView
+                    android:id="@+id/trip_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/trip_fare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Amount" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/navigate"
+                        style="@style/Widget.GrabCycle.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/dh_navigate"
+                        app:icon="@drawable/ic_navigation" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/call_passenger"
+                        style="@style/Widget.GrabCycle.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_sm"
+                        android:layout_weight="1"
+                        android:text="@string/action_call"
+                        app:icon="@drawable/ic_phone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/message_passenger"
+                        style="@style/Widget.GrabCycle.Button.Outlined"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_sm"
+                        android:layout_weight="1"
+                        android:text="@string/action_message" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/primary_action"
+                    style="@style/Widget.GrabCycle.Button.DriverAction"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/driver_action_height"
+                    android:layout_marginTop="@dimen/space_md" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/no_show"
+                        style="@style/Widget.GrabCycle.Button.Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/dh_no_show"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cancel_trip"
+                        style="@style/Widget.GrabCycle.Button.Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/ride_cancel" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/no_show_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- Trip completed: record the cash actually received against the server's final fare. -->
+            <LinearLayout
+                android:id="@+id/stage_collect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dh_collect_title"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Headline" />
+
+                <LinearLayout
+                    android:id="@+id/collect_lines"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/collect_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Amount" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/collect_amount_layout"
+                    style="@style/Widget.GrabCycle.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:hint="@string/dh_cash_received"
+                    app:prefixText="₱">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/collect_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/record_cash"
+                    style="@style/Widget.GrabCycle.Button.DriverAction"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/driver_action_height"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:text="@string/dh_record_cash" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:accessibilityLiveRegion="polite"
+                android:textAppearance="@style/TextAppearance.GrabCycle.Body"
+                android:textColor="?attr/colorError"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_lg"
+                android:visibility="gone" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

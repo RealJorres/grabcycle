@@ -20,6 +20,15 @@ public enum VerificationStatus {
         return this == NOT_SUBMITTED || this == NEEDS_RESUBMISSION;
     }
 
+    /**
+     * Status as it applies now: an approval whose validity has lapsed acts as
+     * NEEDS_RESUBMISSION (mirrors the backend), so a renewal can be submitted.
+     */
+    public static VerificationStatus effective(VerificationStatus status, Long validUntilMs, long nowMs) {
+        if (status == APPROVED && validUntilMs != null && validUntilMs <= nowMs) return NEEDS_RESUBMISSION;
+        return status;
+    }
+
     public boolean isPendingReview() {
         return this == SUBMITTED || this == UNDER_REVIEW;
     }

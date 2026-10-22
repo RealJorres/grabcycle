@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_history"
+        android:title="@string/history_driver_title" />
+    <item
+        android:id="@+id/menu_accreditation"
+        android:title="@string/dh_menu_accreditation" />
+    <item
+        android:id="@+id/menu_support"
+        android:title="@string/menu_support" />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/menu_profile" />
+</menu>

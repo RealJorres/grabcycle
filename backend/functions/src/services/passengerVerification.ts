@@ -1,6 +1,6 @@
 import { endOfLocalDayMillis, isDateStillValid, isValidDateString } from '../domain/dates';
 import { AppError, fail } from '../domain/errors';
-import { assertVerificationTransition, type VerificationActor } from '../domain/passengerVerification';
+import { assertVerificationTransition, effectiveVerificationStatus, type VerificationActor } from '../domain/passengerVerification';
 import type { PassengerVerificationStatus } from '../domain/types';
 import { writeAudit } from '../lib/audit';
 import { getConfig } from '../lib/configStore';
@@ -35,7 +35,7 @@ export interface SubmitVerificationInput {
 
 export async function submitPassengerVerification(ctx: CallerContext, input: SubmitVerificationInput) {
   const user = await requireActiveUser(ctx.uid, 'PASSENGER');
-  const current = user.passengerVerification?.status ?? 'NOT_SUBMITTED';
+  const current = effectiveVerificationStatus(user.passengerVerification, now());
   if (current === 'SUBMITTED' || current === 'UNDER_REVIEW') {
     throw fail.precondition('VERIFICATION_ALREADY_PENDING', 'Your documents are already being reviewed.');
   }
@@ -70,7 +70,8 @@ export async function submitPassengerVerification(ctx: CallerContext, input: Sub
   try {
     await db().runTransaction(async (tx) => {
       const fresh = assertActive((await tx.get(usersCol().doc(ctx.uid))).data() as UserDoc | undefined ?? null, 'PASSENGER');
-      const from = fresh.passengerVerification?.status ?? 'NOT_SUBMITTED';
+      const recorded = fresh.passengerVerification?.status ?? 'NOT_SUBMITTED';
+      const from = effectiveVerificationStatus(fresh.passengerVerification, now());
       assertVerificationTransition(from, 'SUBMITTED', 'PASSENGER');
 
       const previousAttempts = await tx.get(casesCol().where('uid', '==', ctx.uid).select());
@@ -114,7 +115,7 @@ export async function submitPassengerVerification(ctx: CallerContext, input: Sub
         targetType: 'verificationCase',
         targetId: caseRef.id,
         targetUid: ctx.uid,
-        details: { idType: idType.code, attempt: doc.attempt },
+        details: { idType: idType.code, attempt: doc.attempt, renewalOfLapsedApproval: recorded === 'APPROVED' },
       });
     });
   } catch (err) {

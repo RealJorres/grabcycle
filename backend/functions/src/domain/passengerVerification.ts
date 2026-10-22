@@ -65,3 +65,17 @@ export function isPassengerApprovedForBooking(summary: PassengerVerificationSumm
   if (!summary || summary.status !== 'APPROVED') return false;
   return summary.validUntil == null || summary.validUntil > nowMs;
 }
+
+/**
+ * Status as it applies right now: an approval whose validity has lapsed acts
+ * as NEEDS_RESUBMISSION even before the daily expiry job records it, so the
+ * passenger can submit a current ID immediately instead of being stuck.
+ */
+export function effectiveVerificationStatus(
+  summary: PassengerVerificationSummary | null | undefined,
+  nowMs: number,
+): PassengerVerificationStatus {
+  const status = summary?.status ?? 'NOT_SUBMITTED';
+  if (status === 'APPROVED' && summary!.validUntil != null && summary!.validUntil <= nowMs) return 'NEEDS_RESUBMISSION';
+  return status;
+}

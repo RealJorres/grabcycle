@@ -28,7 +28,7 @@ beforeEach(async () => {
 const dbAs = (uid: string) => env.authenticatedContext(uid).database();
 
 function location(over: Record<string, unknown> = {}) {
-  return { lat: 13.4467, lng: 121.8406, acc: 12, g: 'wdq3x5s8z', ts: serverTimestamp(), sid: 'sess-1', ...over };
+  return { lat: 13.4467, lng: 121.8406, acc: 12, g: 'wdq3x5s8z', ts: serverTimestamp(), sid: 'sess-1', cts: Date.now(), ...over };
 }
 
 async function seedPrevious(uid: string, data: Record<string, unknown>) {
@@ -60,6 +60,12 @@ describe('driver location publishing', () => {
     await assertFails(set(ref(dbAs('dan'), 'locations/dan'), location({ available: true })));
     const { acc: _acc, ...missingAccuracy } = location();
     await assertFails(set(ref(dbAs('dan'), 'locations/dan'), missingAccuracy));
+  });
+
+  it('rejects writes captured long ago (e.g. queued while offline and replayed later)', async () => {
+    await assertFails(set(ref(dbAs('dan'), 'locations/dan'), location({ cts: Date.now() - 5 * 60_000 })));
+    const { cts: _cts, ...missingCaptureTime } = location();
+    await assertFails(set(ref(dbAs('dan'), 'locations/dan'), missingCaptureTime));
   });
 
   it('cannot write another driver’s location or presence', async () => {

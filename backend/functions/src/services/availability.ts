@@ -114,6 +114,7 @@ async function goOnline(ctx: CallerContext, location: GoOnlineLocation | null) {
         acc: Math.round(location.accuracy),
         g: geohashForLocation([location.lat, location.lng], 10),
         ts: ServerValue.TIMESTAMP,
+        cts: Date.now(),
         sid: result.sessionId,
         mock: location.mock,
       });

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Launch -->
+    <string name="launch_error_title">We couldn’t load your account</string>
+
+    <!-- Phone sign-in -->
+    <string name="auth_title">Welcome to GrabCycle</string>
+    <string name="auth_subtitle">Sign in or create an account with your mobile number.</string>
+    <string name="auth_phone_hint">Mobile number</string>
+    <string name="auth_phone_helper">e.g. 917 123 4567</string>
+    <string name="auth_send_code">Send code</string>
+    <string name="auth_sms_note">We’ll text you a 6-digit code. Standard SMS rates may apply. Your number is used to sign in and to coordinate your trips.</string>
+    <string name="auth_code_title">Enter the code</string>
+    <string name="auth_code_subtitle">We sent a 6-digit code to %1$s.</string>
+    <string name="auth_code_hint">6-digit code</string>
+    <string name="auth_verify">Verify</string>
+    <string name="auth_change_number">Change number</string>
+    <string name="auth_resend">Resend code</string>
+    <string name="auth_resend_in">Resend in %1$ds</string>
+    <string name="auth_err_invalid_phone">Please enter a valid Philippine mobile number.</string>
+    <string name="auth_err_too_many">Too many attempts from this device or number. Please wait a while and try again.</string>
+    <string name="auth_err_send_failed">We couldn’t send the code. Please check the number and try again.</string>
+    <string name="auth_err_code_format">Enter the 6-digit code from the SMS.</string>
+    <string name="auth_err_wrong_code">That code is incorrect. Please check the SMS and try again.</string>
+    <string name="auth_err_code_expired">The code has expired. Request a new one.</string>
+    <string name="auth_err_sign_in_failed">Sign-in failed. Please try again.</string>
+    <string name="auth_err_account_disabled">This account has been disabled. Please contact GrabCycle support.</string>
+
+    <!-- Registration -->
+    <string name="reg_title">Create your account</string>
+    <string name="reg_subtitle">Tell us how you’ll use GrabCycle. This can’t be changed later.</string>
+    <string name="reg_account_type">I want to</string>
+    <string name="reg_passenger">Ride as a passenger</string>
+    <string name="reg_passenger_desc">Book tricycle rides. A valid government ID is reviewed before your first booking.</string>
+    <string name="reg_driver">Drive my tricycle</string>
+    <string name="reg_driver_desc">Receive ride requests after your license and vehicle documents are approved.</string>
+    <string name="reg_full_name">Full legal name</string>
+    <string name="reg_full_name_helper">As shown on your government ID (first and last name)</string>
+    <string name="reg_accept_terms">I agree to the GrabCycle Terms of Service.</string>
+    <string name="reg_accept_privacy">I have read the Privacy Notice and consent to GrabCycle processing my personal information, including ID documents, for identity verification and ride services.</string>
+    <string name="reg_read_terms">Read Terms</string>
+    <string name="reg_read_privacy">Read Privacy Notice</string>
+    <string name="reg_driver_note">Driver accounts must complete accreditation (license, OR/CR, franchise permit and vehicle photos) and be approved by GrabCycle staff before going online.</string>
+    <string name="reg_submit">Create account</string>
+    <string name="reg_use_another_number">Use a different number</string>
+    <string name="reg_err_type">Please choose how you’ll use GrabCycle.</string>
+    <string name="reg_err_name">Enter your first and last name exactly as on your ID.</string>
+    <string name="reg_err_consent">Please accept the Terms and the Privacy Notice to continue.</string>
+
+    <!-- Policies -->
+    <string name="policy_terms_title">Terms of Service</string>
+    <string name="policy_privacy_title">Privacy Notice</string>
+
+    <!-- Blocked states -->
+    <string name="blocked_staff_title">Use the admin dashboard</string>
+    <string name="blocked_staff_message">This is a GrabCycle staff account. Staff accounts can’t book or drive. Please sign in to the web admin dashboard instead.</string>
+    <string name="blocked_maintenance_title">We’ll be right back</string>
+    <string name="blocked_maintenance_message">GrabCycle is undergoing maintenance. Please try again shortly.</string>
+    <string name="blocked_update_title">Update required</string>
+    <string name="blocked_update_message">This version of GrabCycle is no longer supported. Please update to continue.</string>
+    <string name="blocked_update_action">Update GrabCycle</string>
+    <string name="blocked_session_title">Session ended</string>
+    <string name="blocked_session_message">For your security you’ve been signed out. Please sign in again.</string>
+    <string name="blocked_suspended_title">Account not active</string>
+    <string name="blocked_suspended_message">Your account has been suspended. Please contact GrabCycle support for help.</string>
+    <string name="blocked_suspended_support">Reinstalling the app or signing in on another phone won’t change this. Contact support to request a review.</string>
+</resources>

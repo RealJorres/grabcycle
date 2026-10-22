@@ -16,6 +16,8 @@ export interface LocationRecord {
   acc: number;
   /** Server timestamp (enforced by RTDB rules), epoch millis. */
   ts: number;
+  /** Client capture time (server-time corrected); rules reject values far from server time. */
+  cts?: number;
   /** Presence session id the location was published under. */
   sid: string;
   g: string;

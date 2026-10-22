@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Driver home, onboarding, profile form and document capture. -->
+<resources>
+    <!-- Home -->
+    <string name="dh_menu_accreditation">Accreditation &amp; documents</string>
+    <string name="dh_online">Online</string>
+    <string name="dh_offline">Offline</string>
+    <string name="dh_online_title">You are online</string>
+    <string name="dh_online_message">Keep GrabCycle open or running with its notification so you can receive ride requests.</string>
+    <string name="dh_offline_title">You are offline</string>
+    <string name="dh_offline_message">Go online to receive ride requests near you.</string>
+    <string name="dh_go_online">Go online</string>
+    <string name="dh_go_offline">Go offline</string>
+    <string name="dh_go_offline_confirm">You will stop receiving ride requests and your location will no longer be shared.</string>
+    <string name="dh_getting_location">Getting your location…</string>
+    <string name="dh_location_needed">Location permission is required to go online. Passengers are matched to drivers by location.</string>
+    <string name="dh_precise_needed">Precise location is required to go online. Allow precise location for GrabCycle in Settings.</string>
+    <string name="dh_stats">Completed trips: %1$d</string>
+    <string name="dh_stats_rating">Completed trips: %1$d · ★ %2$s</string>
+    <string name="dh_loc_starting">Starting location sharing…</string>
+    <string name="dh_loc_permission">Location permission is off. Passengers cannot find you.</string>
+    <string name="dh_loc_offline">No internet connection. You will not receive requests until you reconnect.</string>
+    <string name="dh_loc_weak">Weak GPS signal. Move to an open area so passengers can find you.</string>
+    <string name="dh_loc_ok">Location shared (±%1$d m), %2$s</string>
+
+    <string name="dh_setup_title">Finish your accreditation</string>
+    <string name="dh_setup_message">Add your vehicle and documents. A GrabCycle reviewer must approve them before you can go online.</string>
+    <string name="dh_review_title">Application under review</string>
+    <string name="dh_review_message">A reviewer is checking your documents and vehicle. We will notify you of the result.</string>
+    <string name="dh_blocked_title">Driving unavailable</string>
+    <string name="dh_blocked_message">Your driver account cannot go online. Contact support for details.</string>
+    <string name="dh_ineligible_title">You cannot go online right now</string>
+    <string name="dh_ineligible_message">A required document or your vehicle no longer meets the requirements. Update it to go online again.</string>
+    <string name="dh_action_needed_title">Action needed</string>
+    <string name="dh_action_needed_message">Some documents need to be resubmitted. Check the reviewer notes.</string>
+    <string name="dh_continue_setup">Continue setup</string>
+    <string name="dh_view_application">View application</string>
+
+    <string name="dh_new_request">New ride request</string>
+    <plurals name="dh_offer_countdown">
+        <item quantity="one">Respond within %d second</item>
+        <item quantity="other">Respond within %d seconds</item>
+    </plurals>
+    <string name="dh_offer_expired">This request has expired.</string>
+    <plurals name="dh_offer_details">
+        <item quantity="one">%1$s · %2$d passenger</item>
+        <item quantity="other">%1$s · %2$d passengers</item>
+    </plurals>
+    <string name="dh_passenger">Passenger</string>
+    <string name="dh_pickup_note">Pickup note: %1$s</string>
+    <string name="dh_fare_cash">%1$s · cash</string>
+    <string name="dh_fare_cash_sample">%1$s · cash (SAMPLE rate, not official)</string>
+    <string name="dh_accept">Accept</string>
+    <string name="dh_decline">Decline</string>
+
+    <string name="dh_trip_accepted">Pick up %1$s</string>
+    <string name="dh_trip_en_route">Heading to %1$s</string>
+    <string name="dh_trip_arrived">Waiting for %1$s</string>
+    <string name="dh_trip_in_progress">Trip with %1$s</string>
+    <string name="dh_target_pickup">Pickup: %1$s</string>
+    <string name="dh_target_destination">Drop-off: %1$s</string>
+    <string name="dh_navigate">Navigate</string>
+    <string name="dh_no_maps_app">No maps app is installed.</string>
+    <string name="dh_action_en_route">I\'m on my way</string>
+    <string name="dh_action_arrived">I\'ve arrived</string>
+    <string name="dh_action_start">Start trip</string>
+    <string name="dh_action_complete">Complete trip</string>
+    <string name="dh_complete_confirm">Complete only when the passenger has arrived at the destination.</string>
+    <string name="dh_no_show">Passenger no-show</string>
+    <string name="dh_no_show_confirm">Cancel this ride because the passenger did not show up? Report only if you waited at the pickup point.</string>
+    <string name="dh_no_show_wait">You can report a no-show in %1$s.</string>
+
+    <string name="dh_collect_title">Collect cash</string>
+    <string name="dh_collect_total">Amount due: %1$s</string>
+    <string name="dh_cash_received">Cash received</string>
+    <string name="dh_cash_invalid">Enter the amount you received, for example 45 or 45.50.</string>
+    <string name="dh_cash_short_confirm">You received %1$s but the amount due is %2$s. The shortfall will be recorded and support may follow up.</string>
+    <string name="dh_record_cash">Record cash received</string>
+    <string name="dh_rate_passenger">Rate your passenger</string>
+    <string name="dh_skip">Skip</string>
+
+    <!-- Eligibility reasons -->
+    <string name="dreason_account_not_active">Your account is not active.</string>
+    <string name="dreason_suspended">Your driver account is suspended.</string>
+    <string name="dreason_not_approved">Your application has not been approved yet.</string>
+    <string name="dreason_vehicle">Your vehicle has not been approved.</string>
+    <string name="dreason_document_missing">Missing approved document: %1$s</string>
+    <string name="dreason_document_expired">Expired document: %1$s</string>
+
+    <!-- Onboarding -->
+    <string name="do_step_profile">1. Driver and vehicle</string>
+    <string name="do_step_documents">2. Documents</string>
+    <string name="do_profile_title">Driver and vehicle details</string>
+    <string name="do_profile_missing">Add your municipality and tricycle details.</string>
+    <string name="do_profile_summary">Plate %1$s · Body no. %2$s</string>
+    <string name="do_to_do">To do</string>
+    <string name="do_vehicle_approved">Vehicle approved</string>
+    <string name="do_vehicle_pending">Vehicle pending review</string>
+    <string name="do_vehicle_needs_changes">Vehicle needs changes</string>
+    <string name="do_sample_policy">The document list is a SAMPLE configuration for testing. The operator must confirm the official requirements.</string>
+    <string name="do_optional">%1$s (optional)</string>
+    <string name="do_valid_until">Valid until %1$s</string>
+    <string name="do_expired_on">Expired on %1$s</string>
+    <string name="do_renewal_reviewing">renewal under review</string>
+    <string name="do_submit">Submit application</string>
+    <string name="do_resubmit">Resubmit application</string>
+    <string name="do_submitted">Application submitted. A reviewer will check it.</string>
+    <string name="do_hint_reviewing">Your application is being reviewed.</string>
+    <string name="do_hint_profile">Complete your driver and vehicle details first.</string>
+    <plurals name="do_hint_documents">
+        <item quantity="one">%d required document still needs to be submitted.</item>
+        <item quantity="other">%d required documents still need to be submitted.</item>
+    </plurals>
+    <string name="do_approved_title">You are accredited</string>
+    <string name="do_approved_message">All requirements are approved. You can go online.</string>
+    <string name="do_refresh">Check again</string>
+
+    <!-- Profile form -->
+    <string name="pf_review_warning">Your vehicle is approved. Changing its details sends it back for review, and you cannot go online until it is approved again.</string>
+    <string name="pf_section_driver">Driver</string>
+    <string name="pf_section_vehicle">Tricycle</string>
+    <string name="pf_municipality">Municipality where you live</string>
+    <string name="pf_choose_municipality">Choose a municipality in the service area.</string>
+    <string name="pf_plate">Plate number</string>
+    <string name="pf_plate_invalid">Enter the plate number as shown (letters, numbers, spaces or dashes).</string>
+    <string name="pf_body_number">Body number</string>
+    <string name="pf_body_number_helper">The number painted on the tricycle (from your franchise).</string>
+    <string name="pf_body_invalid">Use letters, numbers or dashes (up to 12).</string>
+    <string name="pf_make">Make (motorcycle brand)</string>
+    <string name="pf_model">Model</string>
+    <string name="pf_color">Color</string>
+    <string name="pf_capacity">Passenger capacity</string>
+    <string name="pf_capacity_helper">The number of passengers your franchise allows.</string>
+    <string name="pf_capacity_invalid">Enter a number from 1 to 8.</string>
+    <string name="pf_franchise">Franchise municipality</string>
+    <string name="pf_required">Required.</string>
+    <string name="pf_saved">Details saved.</string>
+
+    <!-- Document capture -->
+    <string name="dc_default_description">Take a clear photo of your %1$s.</string>
+    <string name="dc_profile_photo_hint">Once approved, this photo is shown to passengers so they can recognize you.</string>
+    <string name="dc_privacy_note">Documents are stored privately and seen only by authorized reviewers.</string>
+    <string name="dc_number_invalid">Check the %1$s format.</string>
+    <string name="dc_submitted">Document submitted for review.</string>
+    <string name="dc_unavailable_title">Document not required</string>
+    <string name="dc_unavailable_message">This document is no longer part of the requirements.</string>
+</resources>

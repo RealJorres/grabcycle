@@ -1,0 +1,43 @@
+GRABCYCLE PRIVACY NOTICE — Version 2026-10
+
+DRAFT FOR LEGAL REVIEW. This notice must be reviewed and completed by the operator's counsel and Data Protection Officer before public launch. It describes how the GrabCycle app is engineered to handle personal information; it is not a statement that the operator has satisfied every requirement of the Data Privacy Act of 2012 (Republic Act No. 10173) or issuances of the National Privacy Commission (NPC).
+
+1. Who we are
+GrabCycle ("we") operates a tricycle ride-booking service in Marinduque, Philippines. Personal information controller: [OPERATOR LEGAL NAME, ADDRESS]. Data Protection Officer: [NAME, EMAIL, PHONE].
+
+2. What we collect
+• Account: full legal name, verified mobile number, account type, language preference, consent records.
+• Passenger identity verification: the government ID type you choose, the name shown on it, its expiry date (if any) and photos of the ID. Photos are re-encoded on your phone before upload, which removes hidden photo metadata such as GPS location.
+• Driver accreditation: profile photo, driver's license (including its number and expiry), Official Receipt and Certificate of Registration, franchise/permit documents, vehicle photos and vehicle details (plate and body number, make, model, colour).
+• Location: your pickup and destination. For drivers who are online, the device location is shared while the "You're online" notification is visible. Only the current position is kept for matching; exact positions at trip milestones (accepted, arrived, started, completed) are kept with the trip record for safety and dispute handling.
+• Trips and payments: trip times, route endpoints, fare breakdown, cash amount recorded and payment status, ratings and support reports.
+• Device: a random installation identifier and a push-notification token.
+
+3. Why we use it
+• To verify that passengers and drivers are who they say they are before any ride is booked (safety and fraud prevention).
+• To match passengers with nearby accredited drivers, show trip progress and contact details during an active trip, and compute fares.
+• To keep records needed to resolve disputes, respond to safety reports and meet legal obligations.
+• To send service notifications (ride requests, arrival, verification results, document expiry reminders).
+
+4. Who can see it
+• Passengers see an approved driver's display name and photo, vehicle description and approximate distance before booking; after a driver accepts, the plate and body number and the driver's live location for that trip only. Phone numbers are visible to both parties only while the trip is active.
+• Drivers see the passenger's first name, pickup and destination for trips offered to or accepted by them.
+• ID and license photos are stored in private storage that no app user can read. Only authorized GrabCycle reviewers can view them through an audited review console, solely to decide on your verification.
+• Service providers that host the platform (Google Cloud / Firebase, Google Maps Platform) process data on our behalf under their terms. [List any additional processors.]
+• Authorities, when required by law or a lawful order.
+
+5. How long we keep it
+• Rejected verification documents: deleted [90] days after the decision.
+• Superseded or renewed accreditation documents: deleted [90] days after replacement.
+• Trip, payment and audit records: kept for [5 years] unless a longer period is required by law, then deleted.
+• Unsubmitted photo uploads: deleted within [24 hours].
+[Retention periods must be confirmed by counsel.]
+
+6. Your rights
+Under the Data Privacy Act you may be informed, access, object, request correction or erasure/blocking, request data portability, claim damages and lodge a complaint with the National Privacy Commission. Use Profile → Privacy & data in the app, or contact our DPO. We may need to keep some records where the law requires it.
+
+7. Security
+Data is encrypted in transit; access is limited by role and logged; documents are kept in private storage; administrative actions are audit-logged. No system is completely secure; we will notify you and the NPC of personal data breaches as required by law.
+
+8. Changes
+We will notify you in the app and ask for your consent again when this notice changes materially.

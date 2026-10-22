@@ -75,7 +75,18 @@ class RulesTest {
         assertTrue(VerificationStatus.NEEDS_RESUBMISSION.canSubmit());
         assertFalse(VerificationStatus.SUBMITTED.canSubmit());
         assertFalse(VerificationStatus.SUSPENDED.canSubmit());
+        assertEquals(VerificationStatus.NEEDS_RESUBMISSION, VerificationStatus.effective(VerificationStatus.APPROVED, now, now));
+        assertEquals(VerificationStatus.APPROVED, VerificationStatus.effective(VerificationStatus.APPROVED, now + 1, now));
+        assertEquals(VerificationStatus.SUSPENDED, VerificationStatus.effective(VerificationStatus.SUSPENDED, now - 1, now));
         assertFalse(DocumentStatus.PENDING_REVIEW.canSubmit());
+        java.time.LocalDate today = java.time.LocalDate.of(2026, 10, 22);
+        assertEquals(DocumentStatus.PENDING_REVIEW, DocumentStatus.derive(true, true, "2026-01-01", null, today));
+        assertEquals(DocumentStatus.APPROVED, DocumentStatus.derive(false, true, "2026-10-22", "REJECT", today));
+        assertEquals(DocumentStatus.EXPIRED, DocumentStatus.derive(false, true, "2026-10-21", null, today));
+        assertEquals(DocumentStatus.APPROVED, DocumentStatus.derive(false, true, null, null, today));
+        assertEquals(DocumentStatus.REJECTED, DocumentStatus.derive(false, false, null, "REJECT", today));
+        assertEquals(DocumentStatus.NEEDS_RESUBMISSION, DocumentStatus.derive(false, false, null, "REQUEST_RESUBMISSION", today));
+        assertEquals(DocumentStatus.NOT_SUBMITTED, DocumentStatus.derive(false, false, null, null, today));
         assertTrue(DocumentStatus.EXPIRED.needsAction());
         assertTrue(Availability.ON_TRIP.sharesLocation());
         assertFalse(Availability.OFFLINE.sharesLocation());

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Passenger home, booking and place search. -->
+<resources>
+    <string name="ph_menu">Open menu</string>
+    <string name="ph_my_location">Center on my location</string>
+    <string name="ph_greeting">Hi, %1$s</string>
+    <string name="ph_greeting_plain">Hi there</string>
+    <string name="ph_where_to">Where to?</string>
+    <string name="ph_current_location">Current location</string>
+    <string name="ph_locating">Finding your location…</string>
+    <string name="ph_location_unavailable">Location unavailable. Set your pickup on the map.</string>
+    <string name="ph_pickup">Pickup</string>
+    <string name="ph_destination">Destination</string>
+    <string name="ph_pickup_with_accuracy">%1$s (accurate to about %2$d m)</string>
+    <string name="ph_pinned_location">Pinned location (%1$.5f, %2$.5f)</string>
+    <string name="ph_resolving">Looking up address…</string>
+    <string name="ph_pin_desc">Map pin marking the selected point</string>
+    <string name="ph_pin_hint">Move the map to place the pin exactly where you are.</string>
+    <string name="ph_pin_hint_accuracy">Your GPS is only accurate to about %1$d m. Move the map so the pin is exactly where you are.</string>
+    <string name="ph_confirm_pickup_title">Set pickup point</string>
+    <string name="ph_confirm_destination_title">Set destination</string>
+    <string name="ph_confirm_pickup">Confirm pickup</string>
+    <string name="ph_confirm_destination">Confirm destination</string>
+    <string name="ph_route_summary">%1$s → %2$s</string>
+    <string name="ph_change_trip">Change</string>
+
+    <string name="ph_location_title">Allow location for pickup</string>
+    <string name="ph_location_rationale">GrabCycle uses your location only while the app is open, to set your pickup point and show nearby drivers. You can also set your pickup on the map.</string>
+    <string name="ph_location_denied">Location permission is turned off for GrabCycle. Enable it in Settings, or set your pickup on the map.</string>
+    <string name="ph_location_allow">Allow location</string>
+    <string name="ph_location_skip">Set pickup on the map instead</string>
+    <string name="ph_location_off_title">Location is turned off</string>
+    <string name="ph_location_off_message">Turn on your phone\'s location so we can find your pickup point, or set it on the map.</string>
+    <string name="ph_location_approximate">Only approximate location is allowed. Please confirm your exact pickup point on the map.</string>
+
+    <string name="ph_estimated_fare">Estimated fare</string>
+    <string name="ph_fare_desc">Estimated fare %1$s</string>
+    <string name="ph_show_breakdown">Show fare breakdown</string>
+    <string name="ph_hide_breakdown">Hide fare breakdown</string>
+    <string name="ph_sample_fare_notice">These are SAMPLE rates for testing only. They are not official fares.</string>
+    <string name="ph_distance_estimate">About %1$s (straight-line estimate)</string>
+    <string name="ph_distance_road">%1$s by road</string>
+    <string name="ph_distance_road_eta">%1$s by road · about %2$s</string>
+    <string name="ph_passengers_minus">Fewer passengers</string>
+    <string name="ph_passengers_plus">More passengers</string>
+    <plurals name="ph_passengers">
+        <item quantity="one">%d passenger</item>
+        <item quantity="other">%d passengers</item>
+    </plurals>
+    <string name="ph_choose_driver">Choose a driver</string>
+    <string name="ph_verify_to_book">Verify your ID to book</string>
+
+    <string name="ph_nearby_drivers">Nearby drivers</string>
+    <string name="ph_finding_nearby">Looking for available drivers…</string>
+    <plurals name="ph_drivers_within">
+        <item quantity="one">%1$d available driver within %2$s</item>
+        <item quantity="other">%1$d available drivers within %2$s</item>
+    </plurals>
+    <string name="ph_no_drivers_title">No drivers available right now</string>
+    <string name="ph_no_drivers_message">No available drivers near your pickup point. You can search a wider area or try again in a few minutes.</string>
+    <string name="ph_no_drivers_message_max">No available drivers within the maximum search area. Please try again in a few minutes.</string>
+    <string name="ph_no_drivers_radius">Searched within %1$s</string>
+    <string name="ph_search_wider">Search a wider area</string>
+    <string name="ph_drivers_error_title">Could not load drivers</string>
+    <string name="ph_book_nearest">Book the nearest available driver</string>
+    <string name="ph_book_driver_title">Book %1$s?</string>
+    <string name="ph_allow_fallback">If this driver doesn\'t respond, offer my ride to another nearby driver</string>
+    <string name="ph_book">Book</string>
+    <string name="ph_new_driver">New</string>
+    <string name="ph_driver_photo">Driver photo</string>
+    <string name="ph_distance_desc">%1$s away</string>
+
+    <string name="ph_verify_title">Verify your identity to book</string>
+    <string name="ph_verify_message">For everyone\'s safety, passengers submit a valid ID before their first ride. A GrabCycle reviewer checks it, usually within a day.</string>
+    <string name="ph_verify_pending_title">Your ID is being reviewed</string>
+    <string name="ph_verify_pending_message">We\'ll notify you as soon as a reviewer approves it. You can look around in the meantime.</string>
+    <string name="ph_verify_resubmit_title">Please resubmit your ID</string>
+    <string name="ph_verify_resubmit_message">Your ID could not be approved. Check the reviewer\'s note and submit a clearer photo.</string>
+    <string name="ph_verify_blocked_title">Booking unavailable</string>
+    <string name="ph_verify_blocked_message">Your verification was not approved. Contact support if you believe this is a mistake.</string>
+
+    <string name="search_pickup_hint">Search pickup point</string>
+    <string name="search_destination_hint">Search destination</string>
+    <string name="search_choose_on_map">Choose on map</string>
+    <string name="search_empty_title">Search for a place</string>
+    <string name="search_empty_message">Type a landmark, barangay or street in Marinduque.</string>
+    <string name="search_no_results">No places found</string>
+    <string name="search_no_results_message">Try a different name, or choose the point on the map.</string>
+    <string name="search_error_title">Search failed</string>
+    <string name="search_outside_area">Some results are outside the GrabCycle service area and are hidden.</string>
+    <string name="search_provider_unavailable">Address search is limited right now. Showing GrabCycle landmarks only.</string>
+
+    <!-- Passenger menu -->
+    <string name="menu_history">My rides</string>
+    <string name="menu_verification">ID verification</string>
+    <string name="menu_support">Help &amp; support</string>
+    <string name="menu_profile">Profile &amp; settings</string>
+</resources>

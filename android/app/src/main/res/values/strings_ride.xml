@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Active ride (passenger and driver), timeline, cancellation, emergency. -->
+<resources>
+    <string name="ride_emergency">Emergency</string>
+    <string name="ride_trip">Trip</string>
+    <string name="ride_timeline">Timeline</string>
+    <string name="ride_cancel">Cancel ride</string>
+    <string name="ride_report_issue">Report an issue</string>
+    <string name="ride_your_driver">Your driver</string>
+    <string name="ride_quoted_fare">Quoted fare %1$s · cash</string>
+    <string name="ride_quoted_fare_sample">Quoted fare %1$s · cash (SAMPLE rate, not official)</string>
+    <string name="ride_plate_desc">Plate number %1$s</string>
+    <string name="ride_body_number">Body no. %1$s</string>
+
+    <string name="ride_finding_driver">Finding you a driver</string>
+    <string name="ride_waiting_selected">Waiting for your driver to accept</string>
+    <string name="ride_finding_subtitle">Keep this screen open. We\'ll notify you when a driver accepts.</string>
+    <string name="ride_contacting">Contacting drivers…</string>
+    <plurals name="ride_offer_countdown">
+        <item quantity="one">Waiting for the driver to respond (%d second left)</item>
+        <item quantity="other">Waiting for the driver to respond (%d seconds left)</item>
+    </plurals>
+    <string name="ride_driver_coming">%1$s is on the way</string>
+    <string name="ride_eta">Estimated %1$s away when they accepted</string>
+    <string name="ride_eta_unknown">Check the plate and body number before you board.</string>
+    <string name="ride_driver_arrived">%1$s has arrived</string>
+    <string name="ride_driver_arrived_subtitle">Meet your driver at the pickup point. Check the plate and body number before boarding.</string>
+    <string name="ride_in_progress">On your way</string>
+    <string name="ride_heading_to">Heading to %1$s</string>
+    <string name="ride_completed">You have arrived</string>
+    <string name="ride_completed_subtitle">Please pay your driver in cash.</string>
+    <string name="ride_cancelled_title">Ride cancelled</string>
+    <string name="ride_ended_title">Ride ended</string>
+    <string name="ride_book_again">Back to booking</string>
+
+    <string name="ride_location_waiting">Waiting for the driver\'s location…</string>
+    <string name="ride_location_ended">Live location sharing has ended.</string>
+    <string name="ride_location_live">Live location</string>
+    <string name="ride_location_live_to_pickup">Live · %1$s from your pickup</string>
+    <string name="ride_location_live_to_destination">Live · %1$s to your destination</string>
+    <string name="ride_location_stale">Location not updated since %1$s. The driver may have a weak signal.</string>
+
+    <string name="ride_rate_driver">Rate your driver</string>
+    <string name="ride_rating_comment">Comment (optional)</string>
+    <string name="ride_submit_rating">Submit rating</string>
+    <string name="ride_rating_required">Choose 1 to 5 stars.</string>
+    <string name="ride_view_receipt">View receipt</string>
+
+    <string name="ride_ended_no_driver">No driver accepted your request. Please try again in a few minutes.</string>
+    <string name="ride_ended_selected_declined">The driver you chose declined the ride.</string>
+    <string name="ride_ended_selected_timeout">The driver you chose did not respond in time.</string>
+    <string name="ride_ended_selected_unavailable">The driver you chose is no longer available.</string>
+    <string name="ride_ended_expired">The request timed out before a driver accepted.</string>
+    <string name="ride_ended_driver_cancelled">Your driver cancelled the ride. You were not charged.</string>
+    <string name="ride_ended_admin_cancelled">GrabCycle support cancelled this ride.</string>
+    <string name="ride_ended_cancelled">You cancelled this ride.</string>
+
+    <string name="event_requested">Ride requested</string>
+    <string name="event_offer_sent">Offered to a driver</string>
+    <string name="event_offer_declined">Driver declined</string>
+    <string name="event_offer_expired">Driver did not respond</string>
+    <string name="event_accepted">Driver accepted</string>
+    <string name="event_en_route">Driver on the way</string>
+    <string name="event_arrived">Driver arrived</string>
+    <string name="event_started">Trip started</string>
+    <string name="event_completed">Trip completed</string>
+    <string name="event_cancelled_passenger">Cancelled by passenger</string>
+    <string name="event_cancelled_driver">Cancelled by driver</string>
+    <string name="event_cancelled_admin">Cancelled by support</string>
+    <string name="event_no_driver">No driver found</string>
+    <string name="event_expired">Request expired</string>
+    <string name="event_update">Updated</string>
+
+    <string name="cancel_title">Why are you cancelling?</string>
+    <string name="cancel_keep_ride">Keep ride</string>
+    <string name="cancel_confirm">Cancel ride</string>
+    <string name="cancel_choose_reason">Choose a reason.</string>
+    <string name="cancel_passenger_searching_warning">No driver has accepted yet, so there is no charge.</string>
+    <string name="cancel_passenger_fee_warning">Your driver accepted a while ago, so a cancellation fee of %1$s applies under the published policy.</string>
+    <string name="cancel_passenger_assigned_warning">A driver is already on the way. Frequent cancellations may limit your account.</string>
+    <string name="cancel_driver_warning">The passenger will be told the ride was cancelled. Frequent cancellations affect your standing.</string>
+    <string name="cancel_changed_mind">Changed my mind</string>
+    <string name="cancel_wait_too_long">Waiting too long</string>
+    <string name="cancel_wrong_pickup">Wrong pickup point</string>
+    <string name="cancel_driver_asked">Driver asked me to cancel</string>
+    <string name="cancel_found_other">Found another ride</string>
+    <string name="cancel_safety">Safety concern</string>
+    <string name="cancel_other">Other</string>
+    <string name="cancel_vehicle_problem">Vehicle problem</string>
+    <string name="cancel_unsafe_pickup">Unsafe pickup point</string>
+    <string name="cancel_passenger_asked">Passenger asked me to cancel</string>
+
+    <string name="emergency_title">Emergency</string>
+    <string name="emergency_disclaimer">GrabCycle does not contact emergency services for you. In danger, call the hotline directly.</string>
+    <string name="emergency_call_hotline">Call emergency hotline (%1$s)</string>
+    <string name="emergency_text_contact">Text my trip details to %1$s</string>
+    <string name="emergency_no_contact">No emergency contact set (add one in Profile)</string>
+    <string name="emergency_report">Report a safety issue to GrabCycle</string>
+    <string name="emergency_report_description">Urgent safety report filed from the in-trip emergency menu.</string>
+    <string name="emergency_report_sent">Safety report sent. GrabCycle support will review it as a priority. For immediate danger, call the hotline.</string>
+    <string name="emergency_sms_body">GrabCycle trip: driver %1$s, plate %2$s, body no. %3$s, from %4$s to %5$s.</string>
+</resources>

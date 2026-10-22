@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/driver_photo"
+        android:layout_width="@dimen/avatar_lg"
+        android:layout_height="@dimen/avatar_lg"
+        android:background="@drawable/bg_avatar"
+        android:clipToOutline="true"
+        android:contentDescription="@string/ph_driver_photo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_person" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_md"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/driver_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.GrabCycle.Title"
+            tools:text="Pedro S." />
+
+        <TextView
+            android:id="@+id/driver_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+            tools:text="Blue Honda TMX 155" />
+
+        <TextView
+            android:id="@+id/driver_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+            tools:text="★ 4.8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/plate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_status_chip"
+            android:paddingHorizontal="@dimen/space_sm"
+            android:paddingVertical="@dimen/space_xxs"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            tools:text="123ABC" />
+
+        <TextView
+            android:id="@+id/body_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xxs"
+            android:textAppearance="@style/TextAppearance.GrabCycle.Caption"
+            tools:text="Body no. BOAC-042" />
+    </LinearLayout>
+</LinearLayout>

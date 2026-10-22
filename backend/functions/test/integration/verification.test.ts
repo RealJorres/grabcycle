@@ -221,6 +221,38 @@ describe('passenger identity verification', () => {
     expect((await getDoc<UserDoc>(`users/${p.uid}`))?.passengerVerification?.status).toBe('NEEDS_RESUBMISSION');
   });
 
+  it('a lapsed approval can be renewed before the daily expiry job runs', async () => {
+    const p = await registerPassenger();
+    const { caseId } = await submitPassengerVerification(p, {
+      idType: 'PASSPORT',
+      nameOnId: 'Juan',
+      idExpiry: '2030-06-30',
+      uploads: await uploadsFor(p.uid, ['FRONT']),
+    });
+    await decidePassengerVerification(reviewer, { caseId, decision: 'APPROVE', reasonCode: null, publicMessage: null, internalNote: null, checklist: FULL_CHECKLIST });
+
+    // Still valid: resubmitting is refused.
+    await expectReason(
+      submitPassengerVerification(p, { idType: 'PASSPORT', nameOnId: 'Juan', idExpiry: '2035-01-01', uploads: await uploadsFor(p.uid, ['FRONT']) }),
+      'VERIFICATION_NOT_ALLOWED',
+    );
+
+    // Lapsed but not yet swept: renewal is accepted and goes back to review.
+    setClockForTesting(() => Date.parse('2030-07-01T08:00:00+08:00'));
+    const renewed = await submitPassengerVerification(p, {
+      idType: 'PASSPORT',
+      nameOnId: 'Juan',
+      idExpiry: '2035-01-01',
+      uploads: await uploadsFor(p.uid, ['FRONT']),
+    });
+    expect(renewed.status).toBe('SUBMITTED');
+    const user = await getDoc<UserDoc>(`users/${p.uid}`);
+    expect(user?.passengerVerification?.status).toBe('SUBMITTED');
+    expect(user?.passengerVerification?.validUntil).toBeNull();
+    const audit = await db().collection('auditLogs').where('action', '==', 'PASSENGER_VERIFICATION_SUBMITTED').where('targetUid', '==', p.uid).get();
+    expect(audit.docs.map((d) => d.get('details.renewalOfLapsedApproval')).sort()).toEqual([false, true]);
+  });
+
   it('admins can suspend and reinstate a verified passenger; reviewers cannot', async () => {
     const p = await registerPassenger();
     const { caseId } = await submitPassengerVerification(p, { idType: 'PHILSYS', nameOnId: 'Juan', idExpiry: null, uploads: await uploadsFor(p.uid, ['FRONT', 'BACK']) });

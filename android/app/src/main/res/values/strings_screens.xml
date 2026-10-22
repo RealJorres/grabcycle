@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Verification, support, profile, ride history and ride details. -->
+<resources>
+    <!-- Passenger ID verification -->
+    <string name="pv_title">ID verification</string>
+    <string name="pv_form_title">Submit your ID</string>
+    <string name="pv_id_type">Type of ID</string>
+    <string name="pv_choose_type">Choose the type of ID you will submit.</string>
+    <string name="pv_name_on_id">Full name as shown on the ID</string>
+    <string name="pv_name_helper">Type it exactly as printed, including middle name if shown.</string>
+    <string name="pv_name_invalid">Enter your full name (first and last name).</string>
+    <string name="pv_expiry">Expiry date</string>
+    <string name="pv_expiry_required">Enter the expiry date shown on the document.</string>
+    <string name="pv_privacy_note">Your ID photos are stored privately and are seen only by authorized GrabCycle reviewers. They are deleted according to our privacy notice.</string>
+    <string name="pv_submit">Submit for review</string>
+    <string name="pv_submitting">Submitting…</string>
+    <string name="pv_submitted">Submitted. A reviewer will check your ID and we will notify you of the result.</string>
+    <string name="pv_wait_upload">Please wait for the photos to finish uploading.</string>
+    <string name="pv_photos_required">Add a clear photo for each required side.</string>
+    <string name="pv_approved_title">You are verified</string>
+    <string name="pv_approved_message">Your ID was approved. You can book rides.</string>
+    <string name="pv_approved_until">Your ID was approved. Your verification is valid until %1$s.</string>
+    <string name="pv_lapsed_title">Your verification has expired</string>
+    <string name="pv_lapsed_message">Submit a current, valid ID to keep booking rides.</string>
+    <string name="pv_reviewer_note">Reviewer\'s note: %1$s</string>
+
+    <!-- Support -->
+    <string name="support_title">Help &amp; support</string>
+    <string name="support_safety_notice">If you are in danger, call the emergency hotline first. Reports here are reviewed by GrabCycle staff and are not an emergency service.</string>
+    <string name="support_new_report">Report a problem</string>
+    <string name="support_about_ride">About ride %1$s</string>
+    <string name="support_category">What is it about?</string>
+    <string name="support_choose_category">Choose a category.</string>
+    <string name="support_description">Describe what happened</string>
+    <string name="support_description_helper">Include times and places. Do not include passwords or payment details.</string>
+    <string name="support_description_short">Please write at least %1$d characters.</string>
+    <string name="support_submit">Send report</string>
+    <string name="support_sent">Report sent. We will reply here.</string>
+    <string name="support_sent_safety">Safety report sent and marked urgent. If you are in danger, call the emergency hotline.</string>
+    <string name="support_my_reports">Your reports</string>
+    <string name="support_no_reports">You have not sent any reports.</string>
+    <string name="support_cases_error">Could not load your reports</string>
+    <string name="support_response">GrabCycle: %1$s</string>
+    <string name="support_status_open">Open</string>
+    <string name="support_status_in_progress">In progress</string>
+    <string name="support_status_resolved">Resolved</string>
+    <string name="support_cat_safety">Safety concern</string>
+    <string name="support_cat_driver">Driver behavior</string>
+    <string name="support_cat_passenger">Passenger behavior</string>
+    <string name="support_cat_fare">Fare or payment</string>
+    <string name="support_cat_lost_item">Lost item</string>
+    <string name="support_cat_app">App problem</string>
+    <string name="support_cat_account">My account</string>
+    <string name="support_cat_other">Other</string>
+
+    <!-- Profile -->
+    <string name="profile_type_passenger">Passenger account</string>
+    <string name="profile_type_driver">Driver account</string>
+    <string name="profile_rating">★ %1$s from %2$d ratings</string>
+    <string name="profile_emergency_title">Emergency contact</string>
+    <string name="profile_emergency_help">During a trip you can text this person your trip details from the emergency menu. GrabCycle does not contact them automatically.</string>
+    <string name="profile_contact_name">Contact name</string>
+    <string name="profile_contact_phone">Contact mobile number</string>
+    <string name="profile_contact_name_invalid">Enter the contact\'s name.</string>
+    <string name="profile_contact_phone_invalid">Enter a valid Philippine mobile number.</string>
+    <string name="profile_contact_phone_self">Use someone else\'s number, not your own.</string>
+    <string name="profile_contact_saved">Emergency contact saved.</string>
+    <string name="profile_contact_removed">Emergency contact removed.</string>
+    <string name="profile_remove_contact">Remove</string>
+    <string name="profile_remove_contact_confirm">Remove your emergency contact?</string>
+    <string name="profile_privacy_title">Privacy and your data</string>
+    <string name="profile_privacy_notice">Privacy notice</string>
+    <string name="profile_terms">Terms of service</string>
+    <string name="profile_request_access">Request a copy of my data</string>
+    <string name="profile_request_correction">Request a correction</string>
+    <string name="profile_request_deletion">Request account deletion</string>
+    <string name="profile_access_explain">GrabCycle staff will prepare a copy of the personal data we hold about you and contact you through your registered number.</string>
+    <string name="profile_correction_explain">Tell us what is incorrect. Staff will review and correct it. Some details (like your verified name) require new documents.</string>
+    <string name="profile_deletion_explain">Staff will review your request and delete your account and personal data, except records we must keep for safety, disputes or legal obligations for the period stated in the privacy notice. Active trips and open disputes must be resolved first.</string>
+    <string name="profile_request_note">Details (optional)</string>
+    <string name="profile_request_sent">Request received. We will contact you about it.</string>
+    <string name="profile_go_offline_title">Go offline first</string>
+    <string name="profile_go_offline_message">You are online. Go offline from the driver home screen before signing out so passengers are not matched to you.</string>
+    <string name="profile_sign_out_confirm">You will stop receiving ride updates on this device.</string>
+    <string name="profile_version">Version %1$s (%2$d)</string>
+
+    <!-- Ride history -->
+    <string name="history_driver_title">My trips</string>
+    <string name="history_empty_title">No rides yet</string>
+    <string name="history_empty_passenger">Your rides will appear here after you book.</string>
+    <string name="history_empty_driver">Trips you accept will appear here.</string>
+    <string name="history_error">Could not load your rides</string>
+    <string name="history_from">From: %1$s</string>
+    <string name="history_to">To: %1$s</string>
+    <string name="history_quoted">Quoted %1$s</string>
+    <string name="history_no_charge">No charge</string>
+    <string name="history_cancellation_fee">Cancellation fee %1$s</string>
+
+    <!-- Ride details / receipt -->
+    <string name="detail_title">Ride details</string>
+    <string name="detail_ref">Ride reference %1$s</string>
+    <string name="detail_error">Could not load this ride</string>
+    <string name="detail_passenger">Passenger: %1$s</string>
+    <string name="detail_driver">Driver: %1$s · Plate %2$s · Body no. %3$s</string>
+    <string name="detail_no_driver">No driver was assigned.</string>
+    <string name="detail_receipt">Receipt</string>
+    <string name="detail_total_paid_cash">Total (cash)</string>
+    <string name="detail_cancellation_fee">Cancellation fee</string>
+    <string name="detail_no_charge">No charge</string>
+    <string name="detail_quoted">Quoted fare</string>
+    <string name="detail_cash">Payment method: cash</string>
+    <string name="detail_collected">Cash recorded by the driver: %1$s</string>
+    <string name="detail_collected_discrepancy">Cash recorded by the driver: %1$s (amount due %2$s)</string>
+    <string name="detail_dispute">Dispute the payment</string>
+    <string name="detail_dispute_explain">Tell us what is wrong with the fare or the recorded payment. GrabCycle support will review it with both sides.</string>
+    <string name="detail_dispute_hint">What happened?</string>
+    <string name="detail_dispute_sent">Dispute sent. Support will contact you.</string>
+</resources>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Generic actions -->
+    <string name="action_retry">Try again</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_save">Save</string>
+    <string name="action_done">Done</string>
+    <string name="action_open_settings">Open settings</string>
+    <string name="action_sign_out">Sign out</string>
+    <string name="action_call">Call</string>
+    <string name="action_message">Message</string>
+    <string name="action_edit">Edit</string>
+
+    <!-- States -->
+    <string name="state_loading">Loading…</string>
+    <string name="state_offline_title">You’re offline</string>
+    <string name="state_offline_message">Check your mobile data or Wi-Fi connection. GrabCycle needs a connection to confirm bookings.</string>
+    <string name="offline_banner">No connection. Information shown may be out of date.</string>
+    <string name="cached_data_notice">Showing last known status — reconnect for live updates.</string>
+
+    <!-- Document photo slot -->
+    <string name="slot_placeholder">No photo yet</string>
+    <string name="slot_preview_desc">Preview of the selected document photo</string>
+    <string name="slot_take_photo">Take photo</string>
+    <string name="slot_choose_photo">Choose photo</string>
+    <string name="slot_retake">Retake</string>
+    <string name="slot_uploading">Uploading securely…</string>
+    <string name="slot_uploaded">Ready to submit</string>
+    <string name="slot_front">Front</string>
+    <string name="slot_back">Back</string>
+    <string name="slot_photo">Photo</string>
+    <string name="capture_tips">Place the document on a flat, dark surface in good light. Make sure all four corners are visible and the text is readable with no glare.</string>
+
+    <!-- Errors (mapped from backend reasons) -->
+    <string name="err_generic">Something went wrong. Please try again.</string>
+    <string name="err_network">No internet connection. Please check your connection and try again.</string>
+    <string name="err_timeout">The request took too long. Please try again.</string>
+    <string name="err_unauthenticated">Your session has ended. Please sign in again.</string>
+    <string name="err_permission_denied">You don’t have permission to do that.</string>
+    <string name="err_rate_limited">Too many attempts. Please wait a moment and try again.</string>
+    <string name="err_service_unavailable">GrabCycle is temporarily unavailable. Please try again shortly.</string>
+    <string name="err_invalid_argument">Some information is missing or invalid. Please check and try again.</string>
+    <string name="err_not_found">We couldn’t find that. It may have been removed.</string>
+    <string name="err_state_changed">This changed in the meantime. We refreshed the latest status.</string>
+    <string name="err_account_not_registered">Please complete your registration first.</string>
+    <string name="err_account_already_registered">This mobile number is already registered with a different account type.</string>
+    <string name="err_account_type_mismatch">This option isn’t available for your account type.</string>
+    <string name="err_account_suspended">Your account isn’t active. Please contact GrabCycle support.</string>
+    <string name="err_phone_not_verified">Please sign in with your mobile number.</string>
+    <string name="err_consent_required">Please review and accept the latest Terms and Privacy Notice.</string>
+    <string name="err_passenger_not_verified">Your ID verification must be approved before you can book.</string>
+    <string name="err_verification_pending">Your documents are already being reviewed.</string>
+    <string name="err_verification_not_allowed">Verification can’t be submitted for this account right now.</string>
+    <string name="err_unsupported_document">This document type isn’t accepted.</string>
+    <string name="err_upload_not_found">A photo upload was not found. Please take or choose the photo again.</string>
+    <string name="err_upload_invalid">That photo couldn’t be used. Please retake it.</string>
+    <string name="err_documents_incomplete">Some required documents are still missing.</string>
+    <string name="err_document_expired">This document has expired. Please use a valid one.</string>
+    <string name="err_driver_not_eligible">You can’t go online yet. Check your accreditation status.</string>
+    <string name="err_driver_profile_incomplete">Please complete your driver and vehicle details first.</string>
+    <string name="err_driver_active_trip">You have an active trip. Complete or cancel it first.</string>
+    <string name="err_driver_unavailable">That driver is no longer available. Please choose another.</string>
+    <string name="err_location_required">We need your current location. Turn on location and try again.</string>
+    <string name="err_outside_service_area">This location is outside the GrabCycle service area.</string>
+    <string name="err_outside_fare_zones">No fare is defined for this route yet.</string>
+    <string name="err_pickup_equals_destination">The destination is too close to the pickup point.</string>
+    <string name="err_quote_expired">The fare estimate expired. We’ll get a new one.</string>
+    <string name="err_quote_mismatch">The fare estimate is no longer valid. Please refresh it.</string>
+    <string name="err_service_closed">GrabCycle is closed at this hour.</string>
+    <string name="err_active_ride_exists">You already have an active ride.</string>
+    <string name="err_no_drivers">No drivers are available near you right now. Please try again in a few minutes.</string>
+    <string name="err_offer_expired">This ride request has expired.</string>
+    <string name="err_offer_not_found">This ride request is no longer available.</string>
+    <string name="err_ride_not_active">This ride has already ended.</string>
+    <string name="err_too_far_from_pickup">You seem to be too far from the pickup point to mark arrival.</string>
+    <string name="err_cancellation_not_allowed">This ride can’t be cancelled now. Use “Report an issue” if you need help.</string>
+    <string name="err_payment_recorded">Payment for this trip was already recorded.</string>
+    <string name="err_payment_amount">Please enter a valid amount.</string>
+    <string name="err_rating_not_allowed">This trip can’t be rated.</string>
+    <string name="err_rating_submitted">You already rated this trip.</string>
+
+    <!-- Status labels -->
+    <string name="vstatus_not_submitted">Not submitted</string>
+    <string name="vstatus_submitted">Submitted</string>
+    <string name="vstatus_under_review">Under review</string>
+    <string name="vstatus_needs_resubmission">Action needed</string>
+    <string name="vstatus_approved">Verified</string>
+    <string name="vstatus_rejected">Not approved</string>
+    <string name="vstatus_suspended">Suspended</string>
+
+    <string name="dstatus_profile_incomplete">Profile incomplete</string>
+    <string name="dstatus_documents_pending">Documents needed</string>
+    <string name="dstatus_under_review">Under review</string>
+    <string name="dstatus_needs_resubmission">Action needed</string>
+    <string name="dstatus_approved">Approved</string>
+    <string name="dstatus_rejected">Not approved</string>
+    <string name="dstatus_suspended">Suspended</string>
+    <string name="dstatus_expired">Documents expired</string>
+
+    <string name="docstatus_not_submitted">Not submitted</string>
+    <string name="docstatus_pending">Under review</string>
+    <string name="docstatus_approved">Approved</string>
+    <string name="docstatus_needs_resubmission">Resubmit</string>
+    <string name="docstatus_rejected">Rejected</string>
+    <string name="docstatus_expired">Expired</string>
+
+    <string name="rstatus_searching">Finding a driver</string>
+    <string name="rstatus_driver_coming">Driver on the way</string>
+    <string name="rstatus_driver_arrived">Driver arrived</string>
+    <string name="rstatus_in_progress">On trip</string>
+    <string name="rstatus_completed">Completed</string>
+    <string name="rstatus_cancelled">Cancelled</string>
+    <string name="rstatus_no_driver">No driver found</string>
+    <string name="rstatus_expired">Request expired</string>
+    <string name="rstatus_unknown">Updating…</string>
+
+    <string name="pstatus_unpaid">Unpaid</string>
+    <string name="pstatus_pending">Pending review</string>
+    <string name="pstatus_paid">Paid</string>
+    <string name="pstatus_failed">Failed</string>
+    <string name="pstatus_refunded">Refunded</string>
+    <string name="pstatus_disputed">Disputed</string>
+
+    <!-- Location service -->
+    <string name="location_service_title">You’re online on GrabCycle</string>
+    <string name="location_service_text">Sharing your location so nearby passengers can book you. Go offline to stop.</string>
+
+    <!-- Config -->
+    <string name="config_missing_title">App not configured</string>
+    <string name="config_missing_message">This build is missing its Firebase configuration (google-services.json). See the setup guide.</string>
+    <string name="maps_key_missing">Map unavailable: this build has no Maps API key configured.</string>
+</resources>
