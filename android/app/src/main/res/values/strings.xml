@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  English (default) strings. Every user-facing string lives here so a Filipino
+  translation can be added as res/values-fil/strings.xml without code changes.
+-->
+<resources>
+    <string name="app_name">GrabCycle</string>
+    <string name="tagline">Tricycle rides across Marinduque</string>
+
+    <!-- Notification channels (ids are not translated) -->
+    <string name="channel_ride_offers_id" translatable="false">ride_offers</string>
+    <string name="channel_ride_updates_id" translatable="false">ride_updates</string>
+    <string name="channel_account_id" translatable="false">account</string>
+    <string name="channel_location_service_id" translatable="false">driver_location</string>
+    <string name="channel_ride_offers_name">Ride requests</string>
+    <string name="channel_ride_offers_desc">Incoming ride requests for drivers. High priority.</string>
+    <string name="channel_ride_updates_name">Trip updates</string>
+    <string name="channel_ride_updates_desc">Driver arrival, trip progress and receipts.</string>
+    <string name="channel_account_name">Account and verification</string>
+    <string name="channel_account_desc">Verification results, document reminders and account notices.</string>
+    <string name="channel_location_service_name">Location sharing</string>
+    <string name="channel_location_service_desc">Shown while you are online as a driver and sharing your location.</string>
+</resources>

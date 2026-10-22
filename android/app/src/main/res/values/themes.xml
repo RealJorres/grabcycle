@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.GrabCycle" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/gc_primary</item>
+        <item name="colorOnPrimary">@color/gc_on_primary</item>
+        <item name="colorPrimaryContainer">@color/gc_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/gc_on_primary_container</item>
+        <item name="colorSecondary">@color/gc_secondary</item>
+        <item name="colorOnSecondary">@color/gc_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/gc_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/gc_on_secondary_container</item>
+        <item name="colorTertiary">@color/gc_tertiary</item>
+        <item name="colorOnTertiary">@color/gc_on_tertiary</item>
+        <item name="colorError">@color/gc_error</item>
+        <item name="colorOnError">@color/gc_on_error</item>
+        <item name="colorErrorContainer">@color/gc_error_container</item>
+        <item name="colorOnErrorContainer">@color/gc_on_error_container</item>
+        <item name="android:colorBackground">@color/gc_background</item>
+        <item name="colorOnBackground">@color/gc_on_background</item>
+        <item name="colorSurface">@color/gc_surface</item>
+        <item name="colorOnSurface">@color/gc_on_surface</item>
+        <item name="colorSurfaceVariant">@color/gc_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/gc_on_surface_variant</item>
+        <item name="colorOutline">@color/gc_outline</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GrabCycle.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GrabCycle.Medium</item>
+        <item name="materialButtonStyle">@style/Widget.GrabCycle.Button</item>
+        <item name="textInputStyle">@style/Widget.GrabCycle.TextInput</item>
+        <item name="materialCardViewStyle">@style/Widget.GrabCycle.Card</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.GrabCycle.BottomSheetDialog</item>
+
+        <!-- targetSdk 36 is always edge-to-edge; layouts apply system-bar insets explicitly. -->
+        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
+    </style>
+
+    <!-- Brief branded window while the launcher decides where to route. -->
+    <style name="Theme.GrabCycle.Launch">
+        <item name="android:windowBackground">@drawable/bg_launch</item>
+    </style>
+
+    <style name="ShapeAppearance.GrabCycle.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">@dimen/radius_sm</item>
+    </style>
+
+    <style name="ShapeAppearance.GrabCycle.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">@dimen/radius_md</item>
+    </style>
+
+    <style name="Widget.GrabCycle.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.GrabCycle.Small</item>
+    </style>
+
+    <style name="Widget.GrabCycle.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.GrabCycle.Small</item>
+    </style>
+
+    <style name="Widget.GrabCycle.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">@dimen/touch_target</item>
+    </style>
+
+    <style name="Widget.GrabCycle.Button.Danger" parent="Widget.GrabCycle.Button">
+        <item name="backgroundTint">@color/gc_error</item>
+        <item name="android:textColor">@color/gc_on_error</item>
+    </style>
+
+    <!-- Large, glanceable driver actions for use while stationary. -->
+    <style name="Widget.GrabCycle.Button.DriverAction" parent="Widget.GrabCycle.Button">
+        <item name="android:minHeight">@dimen/driver_action_height</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.TitleMedium</item>
+    </style>
+
+    <style name="Widget.GrabCycle.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearance.GrabCycle.Small</item>
+    </style>
+
+    <style name="Widget.GrabCycle.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="shapeAppearance">@style/ShapeAppearance.GrabCycle.Medium</item>
+        <item name="cardElevation">1dp</item>
+    </style>
+
+    <style name="Widget.GrabCycle.Card.Outlined" parent="Widget.Material3.CardView.Outlined">
+        <item name="shapeAppearance">@style/ShapeAppearance.GrabCycle.Medium</item>
+    </style>
+
+    <style name="ThemeOverlay.GrabCycle.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog" />
+
+    <!-- Text styles -->
+    <style name="TextAppearance.GrabCycle.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.GrabCycle.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.GrabCycle.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.GrabCycle.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="TextAppearance.GrabCycle.Amount" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+
+    <style name="TextAppearance.GrabCycle.Chip" parent="TextAppearance.Material3.LabelMedium" />
+</resources>

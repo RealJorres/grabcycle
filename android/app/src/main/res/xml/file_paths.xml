@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Camera captures are written to an app-private cache folder and deleted after upload. -->
+<paths>
+    <cache-path name="captures" path="captures/" />
+</paths>

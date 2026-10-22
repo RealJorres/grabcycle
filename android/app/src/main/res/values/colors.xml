@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  GrabCycle design tokens (light). Brand palette: "Island green" primary for
+  trust and calm, "Tricycle gold" accent drawn from local tricycle livery, and a
+  coral for urgent states. Contrast checked against WCAG AA for text roles.
+-->
+<resources>
+    <!-- Brand -->
+    <color name="gc_green_900">#063F31</color>
+    <color name="gc_green_700">#0A6B50</color>
+    <color name="gc_green_500">#12936E</color>
+    <color name="gc_green_100">#CDEFE2</color>
+    <color name="gc_gold_600">#C78A00</color>
+    <color name="gc_gold_500">#F2A900</color>
+    <color name="gc_gold_100">#FFF0C2</color>
+    <color name="gc_coral_600">#C2401F</color>
+    <color name="gc_coral_100">#FFDCD2</color>
+
+    <!-- Roles -->
+    <color name="gc_primary">@color/gc_green_700</color>
+    <color name="gc_on_primary">#FFFFFF</color>
+    <color name="gc_primary_container">@color/gc_green_100</color>
+    <color name="gc_on_primary_container">@color/gc_green_900</color>
+    <color name="gc_secondary">@color/gc_gold_500</color>
+    <color name="gc_on_secondary">#231A00</color>
+    <color name="gc_secondary_container">@color/gc_gold_100</color>
+    <color name="gc_on_secondary_container">#3A2B00</color>
+    <color name="gc_tertiary">@color/gc_coral_600</color>
+    <color name="gc_on_tertiary">#FFFFFF</color>
+    <color name="gc_background">#F5F7F6</color>
+    <color name="gc_on_background">#14201B</color>
+    <color name="gc_surface">#FFFFFF</color>
+    <color name="gc_on_surface">#14201B</color>
+    <color name="gc_surface_variant">#E9EFEC</color>
+    <color name="gc_on_surface_variant">#4A5752</color>
+    <color name="gc_outline">#C7D1CC</color>
+    <color name="gc_error">#B3261E</color>
+    <color name="gc_on_error">#FFFFFF</color>
+    <color name="gc_error_container">#F9DEDC</color>
+    <color name="gc_on_error_container">#410E0B</color>
+
+    <!-- Status -->
+    <color name="gc_status_success">#1B7F4B</color>
+    <color name="gc_status_success_bg">#DDF3E6</color>
+    <color name="gc_status_warning">#8A5A00</color>
+    <color name="gc_status_warning_bg">#FFF0C2</color>
+    <color name="gc_status_danger">#B3261E</color>
+    <color name="gc_status_danger_bg">#F9DEDC</color>
+    <color name="gc_status_info">#1F5FBF</color>
+    <color name="gc_status_info_bg">#DCE8FB</color>
+    <color name="gc_status_neutral">#4A5752</color>
+    <color name="gc_status_neutral_bg">#E9EFEC</color>
+
+    <!-- Map overlays -->
+    <color name="gc_route_line">#0A6B50</color>
+    <color name="gc_scrim">#99000000</color>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GrabCycle design tokens (dark). -->
+<resources>
+    <color name="gc_primary">#62D5A8</color>
+    <color name="gc_on_primary">#00382A</color>
+    <color name="gc_primary_container">#0A513D</color>
+    <color name="gc_on_primary_container">#CDEFE2</color>
+    <color name="gc_secondary">#FFC94D</color>
+    <color name="gc_on_secondary">#3A2B00</color>
+    <color name="gc_secondary_container">#5A4300</color>
+    <color name="gc_on_secondary_container">#FFF0C2</color>
+    <color name="gc_tertiary">#FFB4A0</color>
+    <color name="gc_on_tertiary">#5F1500</color>
+    <color name="gc_background">#0E1412</color>
+    <color name="gc_on_background">#E3ECE8</color>
+    <color name="gc_surface">#151D1A</color>
+    <color name="gc_on_surface">#E3ECE8</color>
+    <color name="gc_surface_variant">#25302C</color>
+    <color name="gc_on_surface_variant">#B7C4BE</color>
+    <color name="gc_outline">#3C4944</color>
+    <color name="gc_error">#F2B8B5</color>
+    <color name="gc_on_error">#601410</color>
+    <color name="gc_error_container">#8C1D18</color>
+    <color name="gc_on_error_container">#F9DEDC</color>
+
+    <color name="gc_status_success">#7EDBA6</color>
+    <color name="gc_status_success_bg">#11392A</color>
+    <color name="gc_status_warning">#FFCF66</color>
+    <color name="gc_status_warning_bg">#3E2F00</color>
+    <color name="gc_status_danger">#F2B8B5</color>
+    <color name="gc_status_danger_bg">#4D1310</color>
+    <color name="gc_status_info">#A9C7FF</color>
+    <color name="gc_status_info_bg">#132C52</color>
+    <color name="gc_status_neutral">#B7C4BE</color>
+    <color name="gc_status_neutral_bg">#25302C</color>
+
+    <color name="gc_route_line">#62D5A8</color>
+</resources>
