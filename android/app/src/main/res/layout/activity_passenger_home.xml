@@ -263,28 +263,17 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/space_md"
                     android:gravity="center_vertical"
                     android:minHeight="56dp"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/space_lg">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:importantForAccessibility="no"
-                        android:src="@drawable/ic_search"
-                        app:tint="?attr/colorOnSurfaceVariant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_md"
-                        android:text="@string/ph_where_to"
-                        android:textAppearance="@style/TextAppearance.GrabCycle.Title" />
-                </LinearLayout>
+                    android:paddingHorizontal="@dimen/space_lg"
+                    android:text="@string/ph_where_to"
+                    android:textAppearance="@style/TextAppearance.GrabCycle.Title"
+                    app:drawableStartCompat="@drawable/ic_search"
+                    app:drawableTint="?attr/colorOnSurfaceVariant" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
@@ -360,6 +349,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_xs"
+                android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -395,7 +385,7 @@
                         android:layout_width="@dimen/touch_target"
                         android:layout_height="@dimen/touch_target"
                         android:contentDescription="@string/ph_passengers_minus"
-                        android:text="−" />
+                        android:text="@string/symbol_minus" />
 
                     <TextView
                         android:id="@+id/passengers"
@@ -412,7 +402,7 @@
                         android:layout_width="@dimen/touch_target"
                         android:layout_height="@dimen/touch_target"
                         android:contentDescription="@string/ph_passengers_plus"
-                        android:text="+" />
+                        android:text="@string/symbol_plus" />
                 </LinearLayout>
             </LinearLayout>
 

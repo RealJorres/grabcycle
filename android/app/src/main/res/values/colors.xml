@@ -8,13 +8,11 @@
     <!-- Brand -->
     <color name="gc_green_900">#063F31</color>
     <color name="gc_green_700">#0A6B50</color>
-    <color name="gc_green_500">#12936E</color>
     <color name="gc_green_100">#CDEFE2</color>
     <color name="gc_gold_600">#C78A00</color>
     <color name="gc_gold_500">#F2A900</color>
     <color name="gc_gold_100">#FFF0C2</color>
     <color name="gc_coral_600">#C2401F</color>
-    <color name="gc_coral_100">#FFDCD2</color>
 
     <!-- Roles -->
     <color name="gc_primary">@color/gc_green_700</color>
@@ -53,5 +51,4 @@
 
     <!-- Map overlays -->
     <color name="gc_route_line">#0A6B50</color>
-    <color name="gc_scrim">#99000000</color>
 </resources>

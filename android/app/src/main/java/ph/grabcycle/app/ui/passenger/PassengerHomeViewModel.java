@@ -236,6 +236,5 @@ public class PassengerHomeViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         stopPolling();
-        super.onCleared();
     }
 }

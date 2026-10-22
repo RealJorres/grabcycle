@@ -14,10 +14,8 @@
     <string name="action_sign_out">Sign out</string>
     <string name="action_call">Call</string>
     <string name="action_message">Message</string>
-    <string name="action_edit">Edit</string>
 
     <!-- States -->
-    <string name="state_loading">Loading…</string>
     <string name="state_offline_title">You’re offline</string>
     <string name="state_offline_message">Check your mobile data or Wi-Fi connection. GrabCycle needs a connection to confirm bookings.</string>
     <string name="offline_banner">No connection. Information shown may be out of date.</string>
@@ -134,4 +132,6 @@
     <string name="config_missing_title">App not configured</string>
     <string name="config_missing_message">This build is missing its Firebase configuration (google-services.json). See the setup guide.</string>
     <string name="maps_key_missing">Map unavailable: this build has no Maps API key configured.</string>
+    <string name="symbol_minus" translatable="false">−</string>
+    <string name="symbol_plus" translatable="false">+</string>
 </resources>

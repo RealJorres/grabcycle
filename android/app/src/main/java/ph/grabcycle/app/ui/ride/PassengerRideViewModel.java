@@ -121,6 +121,5 @@ public class PassengerRideViewModel extends ViewModel {
     protected void onCleared() {
         searching = false;
         handler.removeCallbacks(refresh);
-        super.onCleared();
     }
 }

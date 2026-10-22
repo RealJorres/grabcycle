@@ -48,6 +48,11 @@
         <item name="cornerSize">@dimen/radius_sm</item>
     </style>
 
+    <style name="ShapeAppearance.GrabCycle.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="ShapeAppearance.GrabCycle.Medium" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerSize">@dimen/radius_md</item>
     </style>

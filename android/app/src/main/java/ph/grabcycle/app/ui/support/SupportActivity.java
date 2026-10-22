@@ -117,7 +117,7 @@ public class SupportActivity extends BaseActivity {
             ok = false;
         }
         if (description.length() < MIN_DESCRIPTION) {
-            b.descriptionLayout.setError(getString(R.string.support_description_short, MIN_DESCRIPTION));
+            b.descriptionLayout.setError(getResources().getQuantityString(R.plurals.support_description_short, MIN_DESCRIPTION, MIN_DESCRIPTION));
             ok = false;
         } else {
             b.descriptionLayout.setError(null);

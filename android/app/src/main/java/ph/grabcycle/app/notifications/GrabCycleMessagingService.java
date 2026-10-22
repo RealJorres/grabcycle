@@ -48,6 +48,12 @@ public class GrabCycleMessagingService extends FirebaseMessagingService {
         show(type, data.get("title"), data.get("body"), rideId);
     }
 
+    /**
+     * Token-based registration is deprecated in favour of Firebase
+     * Installations; kept until the backend migrates its device targeting
+     * together with {@code UserRepository.registerDevice} (docs/toolchain.md).
+     */
+    @SuppressWarnings("deprecation")
     @Override
     public void onNewToken(@NonNull String token) {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {

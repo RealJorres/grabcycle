@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/driver_photo"
         android:layout_width="@dimen/avatar_lg"
         android:layout_height="@dimen/avatar_lg"
         android:background="@drawable/bg_avatar"
-        android:clipToOutline="true"
         android:contentDescription="@string/ph_driver_photo"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_person" />
+        android:src="@drawable/ic_person"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.GrabCycle.Circle" />
 
     <LinearLayout
         android:layout_width="0dp"

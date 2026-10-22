@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.card.MaterialCardView;
 
 import java.io.InputStream;
@@ -165,7 +164,7 @@ public class DocumentSlotView extends MaterialCardView {
 
     private void showPreview(@NonNull Uri uri) {
         Context app = getContext().getApplicationContext();
-        Tasks.call(AppExecutors.io(), () -> decodeThumbnail(app, uri, 720))
+        AppExecutors.runIo(() -> decodeThumbnail(app, uri, 720))
                 .addOnSuccessListener(bmp -> { if (bmp != null && uri.equals(lastUri)) b.preview.setImageBitmap(bmp); });
     }
 

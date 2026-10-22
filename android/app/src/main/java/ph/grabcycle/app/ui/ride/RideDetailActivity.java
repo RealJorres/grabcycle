@@ -239,7 +239,7 @@ public class RideDetailActivity extends BaseActivity {
         dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             String text = input.getText().toString().trim();
             if (text.length() < MIN_DISPUTE) {
-                input.setError(getString(R.string.support_description_short, MIN_DISPUTE));
+                input.setError(getResources().getQuantityString(R.plurals.support_description_short, MIN_DISPUTE, MIN_DISPUTE));
                 return;
             }
             v.setEnabled(false);

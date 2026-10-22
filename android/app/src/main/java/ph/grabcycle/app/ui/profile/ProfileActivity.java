@@ -92,7 +92,8 @@ public class ProfileActivity extends BaseActivity {
         // Same minimum as everywhere else, so a handful of ratings cannot be traced to riders.
         Double avg = p.ratingSummary != null ? p.ratingSummary.averageIfAtLeast((int) minRatings) : null;
         b.rating.setVisibility(avg != null ? View.VISIBLE : View.GONE);
-        if (avg != null) b.rating.setText(getString(R.string.profile_rating, String.format(Locale.US, "%.1f", avg), p.ratingSummary.count));
+        if (avg != null) b.rating.setText(getResources().getQuantityString(R.plurals.profile_rating, (int) p.ratingSummary.count,
+                String.format(Locale.US, "%.1f", avg), p.ratingSummary.count));
 
         EmergencyContact c = p.emergencyContact;
         b.removeContact.setVisibility(c != null ? View.VISIBLE : View.GONE);

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.location.Location;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -158,7 +159,9 @@ public class DriverLocationService extends Service {
         freshnessSec = (int) intent.getLongExtra(EXTRA_FRESHNESS, 30);
 
         try {
-            ServiceCompat.startForeground(this, NOTIFICATION_ID, buildNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            // The service type exists from API 29; ServiceCompat ignores it on older versions.
+            int type = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q ? ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION : 0;
+            ServiceCompat.startForeground(this, NOTIFICATION_ID, buildNotification(), type);
         } catch (RuntimeException e) {
             // e.g. ForegroundServiceStartNotAllowedException when not started from the foreground.
             Log.w(TAG, "Cannot start location sharing", e);

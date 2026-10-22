@@ -57,7 +57,7 @@ public final class UploadRepository {
         final String uploadId = Ids.newUploadId();
         final Context app = context.getApplicationContext();
         final Upload[] holder = new Upload[1];
-        Task<String> task = Tasks.call(AppExecutors.io(), () -> ImageProcessor.prepareJpeg(app.getContentResolver(), imageUri))
+        Task<String> task = AppExecutors.runIo(() -> ImageProcessor.prepareJpeg(app.getContentResolver(), imageUri))
                 .continueWithTask(prepared -> {
                     if (!prepared.isSuccessful() || prepared.getResult() == null) {
                         return Tasks.forException(new AppException(ErrorReason.UPLOAD_INVALID, "Could not read the photo", null, prepared.getException()));

@@ -33,7 +33,10 @@
     <string name="support_choose_category">Choose a category.</string>
     <string name="support_description">Describe what happened</string>
     <string name="support_description_helper">Include times and places. Do not include passwords or payment details.</string>
-    <string name="support_description_short">Please write at least %1$d characters.</string>
+    <plurals name="support_description_short">
+        <item quantity="one">Please write at least %1$d character.</item>
+        <item quantity="other">Please write at least %1$d characters.</item>
+    </plurals>
     <string name="support_submit">Send report</string>
     <string name="support_sent">Report sent. We will reply here.</string>
     <string name="support_sent_safety">Safety report sent and marked urgent. If you are in danger, call the emergency hotline.</string>
@@ -56,7 +59,10 @@
     <!-- Profile -->
     <string name="profile_type_passenger">Passenger account</string>
     <string name="profile_type_driver">Driver account</string>
-    <string name="profile_rating">★ %1$s from %2$d ratings</string>
+    <plurals name="profile_rating">
+        <item quantity="one">★ %1$s from %2$d rating</item>
+        <item quantity="other">★ %1$s from %2$d ratings</item>
+    </plurals>
     <string name="profile_emergency_title">Emergency contact</string>
     <string name="profile_emergency_help">During a trip you can text this person your trip details from the emergency menu. GrabCycle does not contact them automatically.</string>
     <string name="profile_contact_name">Contact name</string>
