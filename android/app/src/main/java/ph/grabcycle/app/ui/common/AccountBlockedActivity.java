@@ -23,11 +23,14 @@ public class AccountBlockedActivity extends AppCompatActivity {
     private static final String EXTRA_MODE = "mode";
     private static final String EXTRA_MESSAGE = "message";
 
-    public static void start(@NonNull Context c, @NonNull Mode mode, @Nullable String message) {
-        c.startActivity(new Intent(c, AccountBlockedActivity.class)
+    public static Intent intent(@NonNull Context c, @NonNull Mode mode, @Nullable String message) {
+        return new Intent(c, AccountBlockedActivity.class)
                 .putExtra(EXTRA_MODE, mode.name())
-                .putExtra(EXTRA_MESSAGE, message)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                .putExtra(EXTRA_MESSAGE, message);
+    }
+
+    public static void start(@NonNull Context c, @NonNull Mode mode, @Nullable String message) {
+        c.startActivity(intent(c, mode, message).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
     @Override

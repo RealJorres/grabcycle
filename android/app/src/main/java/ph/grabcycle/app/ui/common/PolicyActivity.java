@@ -24,8 +24,12 @@ public class PolicyActivity extends AppCompatActivity {
     public static final String KIND_TERMS = "terms";
     public static final String KIND_PRIVACY = "privacy";
 
+    public static Intent intent(@NonNull Context c, @NonNull String kind) {
+        return new Intent(c, PolicyActivity.class).putExtra(EXTRA_KIND, kind);
+    }
+
     public static void start(@NonNull Context c, @NonNull String kind) {
-        c.startActivity(new Intent(c, PolicyActivity.class).putExtra(EXTRA_KIND, kind));
+        c.startActivity(intent(c, kind));
     }
 
     @Override
