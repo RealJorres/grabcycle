@@ -1,0 +1,54 @@
+# ---- Secrets & environment-specific config (never commit) ----
+.env
+.env.*
+!.env.example
+*.secret.local
+.secret.local
+.runtimeconfig.json
+service-account*.json
+*-service-account.json
+*firebase-adminsdk*.json
+google-services.json
+GoogleService-Info.plist
+*.keystore
+*.jks
+keystore.properties
+local.properties
+.firebaserc
+
+# ---- Node ----
+node_modules/
+npm-debug.log*
+coverage/
+*.tsbuildinfo
+
+# ---- Build outputs ----
+backend/functions/lib/
+admin/dist/
+
+# ---- Firebase emulator data / logs ----
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+database-debug.log*
+ui-debug.log*
+pubsub-debug.log*
+emulator-data/
+
+# ---- Android ----
+android/.gradle/
+android/build/
+android/**/build/
+android/.idea/
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+*.iml
+*.apk
+*.aab
+
+# ---- OS / editors ----
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

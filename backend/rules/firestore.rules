@@ -1,0 +1,234 @@
+rules_version = '2';
+
+// GrabCycle Cloud Firestore security rules.
+//
+// Design principles (see docs/security-model.md):
+//   * Deny by default.
+//   * Clients NEVER write to Firestore directly. Every mutation goes through an
+//     authenticated Cloud Function that validates input and enforces business
+//     rules (verification, eligibility, ride state machine, fares, payments).
+//   * Reads are limited to the record owner, legitimate trip participants, or
+//     staff whose `staffRole` custom claim grants the permission.
+//   * Staff roles are set only by the server (provisioning script or a
+//     superadmin-only function), never by the client.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------------------------------------------------------------------
+    // Helpers
+    // ---------------------------------------------------------------------
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function uid() {
+      return request.auth.uid;
+    }
+
+    function staffRole() {
+      return request.auth.token.get('staffRole', '');
+    }
+
+    function hasStaffRole(roles) {
+      return signedIn() && staffRole() in roles;
+    }
+
+    // superadmin: everything incl. staff management
+    // admin:      operations, configuration, suspensions, rides, reviews
+    // reviewer:   identity / accreditation document review only
+    // support:    support cases and ride monitoring (no identity documents)
+    function isAdmin()    { return hasStaffRole(['admin', 'superadmin']); }
+    function isReviewer() { return hasStaffRole(['reviewer', 'admin', 'superadmin']); }
+    function isSupport()  { return hasStaffRole(['support', 'admin', 'superadmin']); }
+    function isStaff()    { return hasStaffRole(['reviewer', 'support', 'admin', 'superadmin']); }
+
+    function isActiveRideStatus(status) {
+      return status in ['ACCEPTED', 'DRIVER_EN_ROUTE', 'DRIVER_ARRIVED', 'IN_PROGRESS'];
+    }
+
+    function isRideParticipant(data) {
+      return signedIn()
+        && (data.passengerUid == uid() || data.get('driverUid', null) == uid());
+    }
+
+    function isOfferedTo(data) {
+      return signedIn()
+        && data.status == 'SEARCHING'
+        && data.get('offer', null) != null
+        && data.offer.driverId == uid();
+    }
+
+    function rideDoc(rideId) {
+      return get(/databases/$(database)/documents/rides/$(rideId)).data;
+    }
+
+    // ---------------------------------------------------------------------
+    // Default deny
+    // ---------------------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ---------------------------------------------------------------------
+    // Accounts
+    // ---------------------------------------------------------------------
+    match /users/{userId} {
+      allow get: if signedIn() && (uid() == userId || isStaff());
+      allow list: if isStaff();
+      allow write: if false;
+
+      // FCM registrations are managed exclusively by the server.
+      match /devices/{deviceId} {
+        allow read, write: if false;
+      }
+    }
+
+    // Staff directory (role assignments mirror custom claims).
+    match /staff/{staffUid} {
+      allow get: if signedIn() && (uid() == staffUid || hasStaffRole(['superadmin']));
+      allow list: if hasStaffRole(['superadmin']);
+      allow write: if false;
+    }
+
+    // ---------------------------------------------------------------------
+    // Drivers & accreditation
+    // ---------------------------------------------------------------------
+    match /drivers/{driverId} {
+      allow get: if signedIn() && (uid() == driverId || isStaff());
+      allow list: if isStaff();
+      allow write: if false;
+
+      // Per-requirement document status (no internal reviewer notes here).
+      match /documents/{requirementCode} {
+        allow read: if signedIn() && (uid() == driverId || isReviewer());
+        allow write: if false;
+      }
+
+      // Sensitive driver details (e.g. licence number). Owner + reviewers.
+      match /private/{docId} {
+        allow read: if signedIn() && (uid() == driverId || isReviewer());
+        allow write: if false;
+      }
+    }
+
+    // Collection-group access for the document-expiry dashboard.
+    match /{path=**}/documents/{requirementCode} {
+      allow read: if isReviewer();
+    }
+
+    // Passenger identity verification cases. Contain document references and
+    // internal reviewer notes, so they are staff-only. Passengers see their
+    // status through the summary mirrored on users/{uid}.
+    match /verificationCases/{caseId} {
+      allow read: if isReviewer();
+      allow write: if false;
+    }
+
+    // ---------------------------------------------------------------------
+    // Rides
+    // ---------------------------------------------------------------------
+    match /rides/{rideId} {
+      allow get: if isRideParticipant(resource.data)
+        || isOfferedTo(resource.data)
+        || isSupport();
+      // Queries must be constrained to the caller's own rides.
+      allow list: if isSupport()
+        || (signedIn() && resource.data.passengerUid == uid())
+        || (signedIn() && resource.data.get('driverUid', null) == uid());
+      allow write: if false;
+
+      // Status timeline (no sensitive data is stored in events).
+      match /events/{eventId} {
+        allow read: if isRideParticipant(rideDoc(rideId)) || isSupport();
+        allow write: if false;
+      }
+
+      // Participant phone numbers, visible only while the trip is active.
+      match /contact/{docId} {
+        allow get: if (isRideParticipant(rideDoc(rideId))
+                        && isActiveRideStatus(rideDoc(rideId).status))
+          || isSupport();
+        allow write: if false;
+      }
+
+      // Matching internals (candidate lists etc.).
+      match /private/{docId} {
+        allow read: if isAdmin();
+        allow write: if false;
+      }
+    }
+
+    match /payments/{rideId} {
+      allow get: if signedIn()
+        && (resource.data.passengerUid == uid()
+            || resource.data.driverUid == uid()
+            || isSupport());
+      allow list: if isSupport()
+        || (signedIn() && resource.data.passengerUid == uid())
+        || (signedIn() && resource.data.driverUid == uid());
+      allow write: if false;
+    }
+
+    match /ratings/{ratingId} {
+      allow get: if signedIn() && (resource.data.raterUid == uid() || isSupport());
+      allow list: if isSupport() || (signedIn() && resource.data.raterUid == uid());
+      allow write: if false;
+    }
+
+    // ---------------------------------------------------------------------
+    // Support
+    // ---------------------------------------------------------------------
+    match /supportCases/{caseId} {
+      allow get: if signedIn() && (resource.data.reporterUid == uid() || isSupport());
+      allow list: if isSupport() || (signedIn() && resource.data.reporterUid == uid());
+      allow write: if false;
+
+      match /notes/{noteId} {
+        allow read: if isSupport();
+        allow write: if false;
+      }
+    }
+
+    // ---------------------------------------------------------------------
+    // Configuration (read-only for signed-in users; changed via admin functions)
+    // ---------------------------------------------------------------------
+    match /config/{configId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /fareConfigs/{version} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /landmarks/{landmarkId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /configHistory/{entryId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // ---------------------------------------------------------------------
+    // Audit & privacy operations
+    // ---------------------------------------------------------------------
+    match /auditLogs/{logId} {
+      allow read: if isAdmin()
+        || (isReviewer() && resource.data.category == 'REVIEW')
+        || (isSupport() && resource.data.category == 'SUPPORT');
+      allow write: if false;
+    }
+
+    match /dataRequests/{requestId} {
+      allow get: if signedIn() && (resource.data.uid == uid() || isAdmin());
+      allow list: if isAdmin() || (signedIn() && resource.data.uid == uid());
+      allow write: if false;
+    }
+
+    // Server-only collections: fareQuotes, rateLimits, idempotency records.
+    // Covered by the default-deny rule above.
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "config": {
+      ".read": "auth != null",
+      ".write": false
+    },
+
+    "presence": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": false
+      }
+    },
+
+    "locations": {
+      ".indexOn": ["g"],
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('presence').child($uid).child('trackingPassengerUid').val() === auth.uid)",
+        ".write": "auth != null && auth.uid === $uid && (!newData.exists() || (root.child('presence').child($uid).child('canPublish').val() === true && newData.child('sid').val() === root.child('presence').child($uid).child('sessionId').val()))",
+        ".validate": "newData.hasChildren(['lat', 'lng', 'acc', 'g', 'ts', 'sid']) && (!data.exists() || now - data.child('ts').val() >= 2000)",
+
+        "lat": {
+          ".validate": "newData.isNumber() && newData.val() >= root.child('config').child('bounds').child('minLat').val() && newData.val() <= root.child('config').child('bounds').child('maxLat').val() && (!data.exists() || (newData.val() - data.val() <= 0.001 + (now - data.parent().child('ts').val()) * 0.0000004 && data.val() - newData.val() <= 0.001 + (now - data.parent().child('ts').val()) * 0.0000004))"
+        },
+        "lng": {
+          ".validate": "newData.isNumber() && newData.val() >= root.child('config').child('bounds').child('minLng').val() && newData.val() <= root.child('config').child('bounds').child('maxLng').val() && (!data.exists() || (newData.val() - data.val() <= 0.001 + (now - data.parent().child('ts').val()) * 0.0000004 && data.val() - newData.val() <= 0.001 + (now - data.parent().child('ts').val()) * 0.0000004))"
+        },
+        "acc": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5000"
+        },
+        "hdg": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 360"
+        },
+        "spd": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"
+        },
+        "g": {
+          ".validate": "newData.isString() && newData.val().length >= 5 && newData.val().length <= 12 && newData.val().matches(/^[0-9bcdefghjkmnpqrstuvwxyz]+$/)"
+        },
+        "ts": {
+          ".validate": "newData.val() === now"
+        },
+        "sid": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 64"
+        },
+        "mock": {
+          ".validate": "newData.isBoolean()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}
