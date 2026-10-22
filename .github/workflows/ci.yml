@@ -121,12 +121,14 @@ jobs:
         if: always()
         working-directory: android
         run: |
-          files=$(find app/build/outputs/androidTest-results -name 'TEST-*.xml' 2>/dev/null || true)
-          if [ -z "$files" ]; then echo "No instrumented test results found"; exit 1; fi
-          python3 - $files <<'EOF'
-          import sys, xml.etree.ElementTree as ET
+          python3 - <<'EOF'
+          import glob, sys, xml.etree.ElementTree as ET
+          # Result file names contain spaces ("TEST-<device> - <api>-..."), so glob here, not in the shell.
+          paths = glob.glob('app/build/outputs/androidTest-results/**/TEST-*.xml', recursive=True)
+          if not paths:
+              sys.exit('No instrumented test results found')
           total = bad = 0
-          for path in sys.argv[1:]:
+          for path in paths:
               root = ET.parse(path).getroot()
               for suite in ([root] if root.tag == 'testsuite' else root.iter('testsuite')):
                   for case in suite.iter('testcase'):
