@@ -115,6 +115,29 @@ jobs:
           disable-animations: true
           working-directory: android
           script: ./gradlew --stacktrace :app:connectedDebugAndroidTest
+      # Gradle does not list instrumented results in the log; print them and
+      # fail if the run silently executed no tests.
+      - name: Instrumented test summary
+        if: always()
+        working-directory: android
+        run: |
+          files=$(find app/build/outputs/androidTest-results -name 'TEST-*.xml' 2>/dev/null || true)
+          if [ -z "$files" ]; then echo "No instrumented test results found"; exit 1; fi
+          python3 - $files <<'EOF'
+          import sys, xml.etree.ElementTree as ET
+          total = bad = 0
+          for path in sys.argv[1:]:
+              root = ET.parse(path).getroot()
+              for suite in ([root] if root.tag == 'testsuite' else root.iter('testsuite')):
+                  for case in suite.iter('testcase'):
+                      total += 1
+                      failed = case.find('failure') is not None or case.find('error') is not None
+                      skipped = case.find('skipped') is not None
+                      bad += failed
+                      print(f"{'FAILED ' if failed else 'SKIPPED' if skipped else 'passed '} {case.get('classname')}.{case.get('name')}")
+          print(f"{total} tests, {bad} failed")
+          sys.exit(1 if total == 0 or bad else 0)
+          EOF
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v7

@@ -64,10 +64,11 @@ Full setup, including a real Firebase project, the Android build, Maps keys and 
 | Security rules | included in `test:emulator` | Firestore, Realtime Database and Storage rules |
 | Android core | `./gradlew :core:test` | Status rules, money/phone/date parsing, geo math, notification de-duplication |
 | Android app (JVM) | `./gradlew :app:testDebugUnitTest` | Contract tests for callable response parsing |
+| Android instrumented | `./gradlew :app:connectedDebugAndroidTest` (device or emulator) | Every layout inflates with the app theme on a real runtime; the unconfigured-build, suspension and policy screens render |
 | Android lint/build | `./gradlew :app:lintDebug :app:assembleDebug` | |
 | Dashboard | `npm test` (admin) | Contract tests against backend permissions and payment rules, route protection, review forms, formatting |
 
-CI runs all of these on every push (`.github/workflows/ci.yml`). Android instrumented/UI tests are not yet written, and nothing has been tested on a physical device. See [Status and limitations](#status-and-limitations).
+CI runs all of these on every push (`.github/workflows/ci.yml`), the instrumented suite on an API 34 emulator. No instrumented test drives the booking, offer, trip or verification flows yet, and nothing has been tested on a physical device. See [Status and limitations](#status-and-limitations).
 
 ## Documentation
 
@@ -87,7 +88,7 @@ Read this before relying on the system.
 
 - **Sample configuration is not official.** The service-area polygon, the document requirements and the fare table produced by `seed:dev` are development samples, flagged `isSample: true`. The backend refuses to activate sample fares or save sample configuration in production. The operator must obtain the official fare matrix, franchise and accreditation requirements from the LGUs and LTO.
 - **Not yet verified against real services:** Google Maps (Places, Geocoding, Routes) with a real key, phone authentication with real SMS, FCM delivery to devices, App Check (Play Integrity and reCAPTCHA Enterprise), and deployment to a real Firebase project. Code paths exist and degrade explicitly (for example, straight-line fare estimates are labelled as such), but they have only run against emulators and mocks.
-- **The Android app is built and unit-tested in CI**, but its UI has not been exercised on a device or emulator, and instrumented tests have not been written.
+- **The Android app is built, unit-tested and smoke-tested on an emulator in CI** (every layout inflates; screens that need no backend render). The booking, driver and verification flows have not been run end to end on a device, and no instrumented test covers them yet.
 - **The emergency feature does not contact emergency services.** It opens the dialer for the configured hotline, lets the passenger text their own emergency contact, and files an urgent support report. The UI states this.
 - **Payments are cash only**, behind a provider abstraction. No online payment provider is integrated.
 - Legal texts in `android/app/src/main/res/raw/` are drafts that need review by counsel for the Data Privacy Act of 2012 and local ordinances.

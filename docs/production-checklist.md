@@ -49,7 +49,7 @@ Work through this before real passengers and drivers use the system. Items marke
 
 - [ ] **[blocker]** Upload keystore created and backed up; Play App Signing enabled; SHA-256 fingerprints registered in Firebase and the Maps key.
 - [ ] **[blocker]** Release build tested on real devices: low-end Android 8 to 9 phones, a current Android version, poor connectivity, permission denial paths, background/foreground transitions while online as a driver, the camera capture flow, notifications.
-- [ ] **[blocker]** Instrumented UI tests for booking, offer acceptance, trip progression and verification (not written yet).
+- [ ] **[blocker]** Instrumented UI tests for booking, offer acceptance, trip progression and verification, run against the Firebase emulators (only smoke tests exist today: layout inflation and the screens that need no backend).
 - [ ] Play Console: data safety form (location, phone number, photos and IDs, purposes), foreground service declaration (type `location`, justification: active driver sharing location for matching), content rating.
 - [ ] Crash reporting chosen and configured (none is integrated; Firebase Crashlytics would add a dependency and must appear in the data safety form).
 - [ ] Translations reviewed (English strings exist; Filipino localisation not yet provided).

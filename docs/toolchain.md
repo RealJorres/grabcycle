@@ -30,7 +30,7 @@ Versions were chosen as the latest stable releases that are compatible with each
 | Play services Maps / Location | 20.1.0 / 21.4.0 | |
 | AndroidX | appcompat 1.8.0, activity 1.13.0, fragment 1.9.1, lifecycle 2.11.0, core 1.19.1, recyclerview 1.4.0, constraintlayout 2.2.2, coordinatorlayout 1.3.0, exifinterface 1.4.2 | |
 | Material Components | 1.14.0 | Material 3 theme |
-| Tests | JUnit 6 (Jupiter, BOM 6.1.3) for `:core`; JUnit 4.13.2 for app JVM tests; AndroidX Test 1.7.0 and Espresso 3.7.0 for future instrumented tests | |
+| Tests | JUnit 6 (Jupiter, BOM 6.1.3) for `:core`; JUnit 4.13.2 for app JVM tests; AndroidX Test 1.7.0 (ext-junit 1.3.0) and Espresso 3.7.0 for instrumented tests | |
 
 ### Deprecation notes
 
