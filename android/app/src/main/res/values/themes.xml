@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GrabCycle" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- All app theming lives in the base; API-specific variants only add attributes. -->
+    <style name="Base.Theme.GrabCycle" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/gc_primary</item>
         <item name="colorOnPrimary">@color/gc_on_primary</item>
         <item name="colorPrimaryContainer">@color/gc_primary_container</item>
@@ -33,8 +34,10 @@
 
         <!-- targetSdk 36 is always edge-to-edge; layouts apply system-bar insets explicitly. -->
         <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
-        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
     </style>
+
+    <!-- API 26: light navigation-bar icons are unavailable (see values-v27). -->
+    <style name="Theme.GrabCycle" parent="Base.Theme.GrabCycle" />
 
     <!-- Brief branded window while the launcher decides where to route. -->
     <style name="Theme.GrabCycle.Launch">

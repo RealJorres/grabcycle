@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- android:windowLightNavigationBar requires API 27. -->
+    <style name="Theme.GrabCycle" parent="Base.Theme.GrabCycle">
+        <item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
+    </style>
+</resources>

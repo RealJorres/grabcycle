@@ -101,6 +101,9 @@ android {
         abortOnError = true
         checkReleaseBuilds = true
         warningsAsErrors = false
+        // Print every finding to the build log so CI shows warnings, not only the first error.
+        textReport = true
+        textOutput = file("stdout")
     }
 }
 
