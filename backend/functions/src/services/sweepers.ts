@@ -79,3 +79,19 @@ export async function purgeOldRides(limit = 100): Promise<number> {
   }
   return snap.size;
 }
+
+/**
+ * Applies the audit retention policy (`retention.auditLogDays`). Export audit
+ * logs to long-term storage (e.g. BigQuery) first if the operator's legal
+ * hold period is longer than the configured window.
+ */
+export async function purgeOldAuditLogs(limit = 400): Promise<number> {
+  const policies = await getConfig('policies');
+  const cutoff = ts(now() - policies.retention.auditLogDays * 86_400_000);
+  const snap = await db().collection('auditLogs').where('at', '<', cutoff).limit(limit).get();
+  if (snap.empty) return 0;
+  const batch = db().batch();
+  snap.docs.forEach((d) => batch.delete(d.ref));
+  await batch.commit();
+  return snap.size;
+}

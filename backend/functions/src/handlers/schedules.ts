@@ -3,7 +3,14 @@ import { log } from '../lib/log';
 import { sweepStaleDrivers } from '../services/availability';
 import { processDocumentExpiry, sendExpiryReminders } from '../services/drivers';
 import { expirePassengerApprovals } from '../services/passengerVerification';
-import { cleanupStagingUploads, processFileDeletionQueue, purgeEphemeral, purgeOldRides, sweepRides } from '../services/sweepers';
+import {
+  cleanupStagingUploads,
+  processFileDeletionQueue,
+  purgeEphemeral,
+  purgeOldAuditLogs,
+  purgeOldRides,
+  sweepRides,
+} from '../services/sweepers';
 
 const TZ = 'Asia/Manila';
 
@@ -43,4 +50,5 @@ export const maintenanceJob = onSchedule({ schedule: '30 2 * * *', timeZone: TZ,
   await run('stagingUploads', () => cleanupStagingUploads());
   await run('ephemeral', () => purgeEphemeral());
   await run('rideRetention', () => purgeOldRides());
+  await run('auditRetention', () => purgeOldAuditLogs());
 });
