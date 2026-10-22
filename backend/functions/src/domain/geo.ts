@@ -19,24 +19,26 @@ export function isValidLatLng(p: { lat: unknown; lng: unknown }): p is LatLng {
   );
 }
 
+export type Polygon = ReadonlyArray<LatLng>;
+
 /**
- * Ray-casting point-in-polygon test on [lat, lng] vertices. A planar
- * approximation is accurate at province scale and away from the antimeridian.
+ * Ray-casting point-in-polygon test. A planar approximation is accurate at
+ * province scale and away from the antimeridian.
  */
-export function pointInPolygon(point: LatLng, polygon: ReadonlyArray<readonly [number, number]>): boolean {
+export function pointInPolygon(point: LatLng, polygon: Polygon): boolean {
   let inside = false;
   const x = point.lng;
   const y = point.lat;
   for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-    const [yi, xi] = polygon[i]!;
-    const [yj, xj] = polygon[j]!;
+    const { lat: yi, lng: xi } = polygon[i]!;
+    const { lat: yj, lng: xj } = polygon[j]!;
     const intersects = yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
     if (intersects) inside = !inside;
   }
   return inside;
 }
 
-export function isInAnyPolygon(point: LatLng, polygons: ReadonlyArray<ReadonlyArray<readonly [number, number]>>): boolean {
+export function isInAnyPolygon(point: LatLng, polygons: ReadonlyArray<Polygon>): boolean {
   return polygons.some((poly) => pointInPolygon(point, poly));
 }
 
@@ -47,13 +49,13 @@ export interface Bounds {
   maxLng: number;
 }
 
-export function boundsOf(polygons: ReadonlyArray<ReadonlyArray<readonly [number, number]>>, marginDeg = 0): Bounds {
+export function boundsOf(polygons: ReadonlyArray<Polygon>, marginDeg = 0): Bounds {
   let minLat = 90;
   let maxLat = -90;
   let minLng = 180;
   let maxLng = -180;
   for (const poly of polygons) {
-    for (const [lat, lng] of poly) {
+    for (const { lat, lng } of poly) {
       minLat = Math.min(minLat, lat);
       maxLat = Math.max(maxLat, lat);
       minLng = Math.min(minLng, lng);

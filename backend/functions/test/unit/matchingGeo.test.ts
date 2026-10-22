@@ -43,15 +43,15 @@ describe('geo helpers', () => {
   });
 
   it('point-in-polygon works for the sample service area', () => {
-    const area = SAMPLE_SERVICE_AREA.polygons;
+    const area = SAMPLE_SERVICE_AREA.polygons.map((p) => p.points);
     expect(isInAnyPolygon(PICKUP, area)).toBe(true);
     expect(isInAnyPolygon({ lat: 14.5995, lng: 120.9842 }, area)).toBe(false); // Manila
-    expect(pointInPolygon({ lat: 0.5, lng: 0.5 }, [[0, 0], [1, 0], [1, 1], [0, 1]])).toBe(true);
-    expect(pointInPolygon({ lat: 1.5, lng: 0.5 }, [[0, 0], [1, 0], [1, 1], [0, 1]])).toBe(false);
+    expect(pointInPolygon({ lat: 0.5, lng: 0.5 }, [{ lat: 0, lng: 0 }, { lat: 1, lng: 0 }, { lat: 1, lng: 1 }, { lat: 0, lng: 1 }])).toBe(true);
+    expect(pointInPolygon({ lat: 1.5, lng: 0.5 }, [{ lat: 0, lng: 0 }, { lat: 1, lng: 0 }, { lat: 1, lng: 1 }, { lat: 0, lng: 1 }])).toBe(false);
   });
 
   it('bounds include a margin', () => {
-    const b = boundsOf([[[13, 121], [14, 122], [13.5, 121.5]]], 0.1);
+    const b = boundsOf([[{ lat: 13, lng: 121 }, { lat: 14, lng: 122 }, { lat: 13.5, lng: 121.5 }]], 0.1);
     expect(b).toEqual({ minLat: 12.9, maxLat: 14.1, minLng: 120.9, maxLng: 122.1 });
   });
 

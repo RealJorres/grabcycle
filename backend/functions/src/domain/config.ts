@@ -11,8 +11,9 @@ import { isValidDateString } from './dates';
  * Marinduque LGUs (see docs/production-checklist.md).
  */
 
-const latLngTuple = z.tuple([z.number().min(-90).max(90), z.number().min(-180).max(180)]);
-const polygon = z.array(latLngTuple).min(3).max(500);
+// Firestore does not allow nested arrays, so polygon vertices are {lat, lng} maps.
+const vertex = z.object({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180) });
+const polygon = z.array(vertex).min(3).max(500);
 const centavos = z.number().int().min(0).max(10_000_000);
 
 // ---------------------------------------------------------------------------
@@ -21,7 +22,7 @@ const centavos = z.number().int().min(0).max(10_000_000);
 export const serviceAreaSchema = z.object({
   name: z.string().min(1).max(100),
   /** One or more polygons (main island plus smaller islands). */
-  polygons: z.array(polygon).min(1).max(50),
+  polygons: z.array(z.object({ name: z.string().max(80), points: polygon })).min(1).max(50),
   municipalities: z.array(z.string().min(1).max(60)).max(100),
   /** Margin (degrees) added around the polygons for the RTDB write bounds. */
   boundsMarginDeg: z.number().min(0).max(1),

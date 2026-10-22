@@ -77,18 +77,21 @@ export const DEFAULT_APP: AppConfig = {
 export const SAMPLE_SERVICE_AREA: ServiceAreaConfig = {
   name: 'Marinduque (sample boundary)',
   polygons: [
-    [
-      [13.585, 121.835],
-      [13.56, 121.99],
-      [13.5, 122.11],
-      [13.42, 122.17],
-      [13.3, 122.15],
-      [13.19, 122.05],
-      [13.16, 121.94],
-      [13.21, 121.84],
-      [13.33, 121.79],
-      [13.46, 121.8],
-    ],
+    {
+      name: 'Marinduque main island (approximate)',
+      points: [
+        { lat: 13.585, lng: 121.835 },
+        { lat: 13.56, lng: 121.99 },
+        { lat: 13.5, lng: 122.11 },
+        { lat: 13.42, lng: 122.17 },
+        { lat: 13.3, lng: 122.15 },
+        { lat: 13.19, lng: 122.05 },
+        { lat: 13.16, lng: 121.94 },
+        { lat: 13.21, lng: 121.84 },
+        { lat: 13.33, lng: 121.79 },
+        { lat: 13.46, lng: 121.8 },
+      ],
+    },
   ],
   municipalities: ['Boac', 'Buenavista', 'Gasan', 'Mogpog', 'Santa Cruz', 'Torrijos'],
   boundsMarginDeg: 0.05,

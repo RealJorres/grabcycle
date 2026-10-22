@@ -125,8 +125,8 @@ describe('fare engine — zone mode', () => {
     mode: 'ZONE',
     zones: {
       definitions: [
-        { id: 'A', name: 'Poblacion', polygon: [[13.44, 121.83], [13.45, 121.83], [13.45, 121.85], [13.44, 121.85]] },
-        { id: 'B', name: 'North', polygon: [[13.47, 121.85], [13.48, 121.85], [13.48, 121.87], [13.47, 121.87]] },
+        { id: 'A', name: 'Poblacion', polygon: [{ lat: 13.44, lng: 121.83 }, { lat: 13.45, lng: 121.83 }, { lat: 13.45, lng: 121.85 }, { lat: 13.44, lng: 121.85 }] },
+        { id: 'B', name: 'North', polygon: [{ lat: 13.47, lng: 121.85 }, { lat: 13.48, lng: 121.85 }, { lat: 13.48, lng: 121.87 }, { lat: 13.47, lng: 121.87 }] },
       ],
       fares: [{ from: 'A', to: 'B', fare: 4000 }],
       symmetric: true,
